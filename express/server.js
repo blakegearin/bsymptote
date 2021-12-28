@@ -39,6 +39,7 @@ router.get('/', (req, res) => {
   res.sendFile(__dirname + "../views/genuary-1-2022.html");
 });
 
+app.use('/.netlify/functions/server', router);  // path must route to lambda
 app.use('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
 
 module.exports = app;

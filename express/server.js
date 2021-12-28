@@ -36,10 +36,10 @@ app.use('/static', express.static(path.join(__dirname, 'public')));
 app.use('/scripts', express.static(path.join(__dirname, 'node_modules/paper/dist')));
 
 router.get('/', (req, res) => {
-  res.sendFile(__dirname + "/views/index.html");
+  res.sendFile(__dirname + "../views/genuary-1-2022.html");
 });
 
-
+app.use('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
 
 module.exports = app;
 module.exports.handler = serverless(app);

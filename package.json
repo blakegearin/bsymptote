@@ -2,12 +2,20 @@
   "name": "bsymptote",
   "version": "1.0.0",
   "description": "Generative art created with Paper.js",
-  "main": "index.js",
-  "scripts": {},
+  "main": "functions/server.js",
+  "scripts": {
+    "build": "netlify-lambda build express",
+    "start": "nodemon server-local.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/blakegearin/paper.js_art.git"
   },
+  "keywords": [
+    "paper.js",
+    "netlify",
+    "express.js"
+  ],
   "author": "Blake Gearin",
   "license": "MIT",
   "bugs": {

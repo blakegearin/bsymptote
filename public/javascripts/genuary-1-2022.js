@@ -4,6 +4,9 @@ window.onload = function () {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 
+  console.log("window.innerWidth: " + window.innerWidth);
+  console.log("window.innerHeight: " + window.innerHeight);
+
   // Create an empty project and a view for the canvas
   paper.setup(canvas);
 
@@ -14,22 +17,16 @@ window.onload = function () {
     };
   };
 
-  function addBackground(canvasBackgroundColor) {
-    new paper.Path.Rectangle({
-      point: 0,
-      size: [window.innerWidth, window.innerHeight],
-      fillColor: canvasBackgroundColor
-    }).sendToBack();
-  }
-
   function addRubberBandBall(
     startPoint,
     endPoint,
     ballSize,
-    numberOfRubberBands,
-    bandColors,
     ballBackgroundColor,
-    cutoutPercentage
+    ballCutoutPercentage,
+    ballRadiusPercentage,
+    numberOfRubberBands,
+    rubberBandRadiusPercentage,
+    rubberBandColors,
   ) {
 
     function lightenDarkenColor(color, percent) {
@@ -94,6 +91,10 @@ window.onload = function () {
       }
     }
 
+    function randomColor() {
+      return new paper.Color(rand(), rand(), rand());
+    }
+
     const bandSize = ballSize / 25;
     const square = new paper.Rectangle({
       from: startPoint,
@@ -103,11 +104,11 @@ window.onload = function () {
     const centerPoint = square.center;
     var ball = new paper.Path.Circle({
       center: centerPoint,
-      radius: ballSize * .89,
+      radius: ballSize * ballRadiusPercentage,
       fillColor: 'tan',
     });
 
-    const colors = {
+    const colorPallettes = {
       webRainbow: [
         'coral',
         'gold',
@@ -151,66 +152,70 @@ window.onload = function () {
     };
 
     var colorArray = null;
-    if (bandColors === 'random' || colors[bandColors] === undefined) {
-      var randomNumber = randomIntFromInterval(0, (Object.keys(colors).length - 1));
-      colorArray = colors[Object.keys(colors)[randomNumber]]
+    if (rubberBandColors === 'random' || colorPallettes[rubberBandColors] === undefined) {
+      var randomNumber = randomIntFromInterval(0, (Object.keys(colorPallettes).length - 1));
+      colorArray = colorPallettes[Object.keys(colorPallettes)[randomNumber]]
     } else {
-      colorArray = colors[bandColors];
+      colorArray = colorPallettes[rubberBandColors];
     };
 
     for (let i = 0; i < numberOfRubberBands; i++) {
       const rubberBandColor = new paper.Color(randomFromArray(colorArray)).toCSS(true);
-      addRubberBand(square, ballSize, bandSize, rubberBandColor);
+      addRubberBand(square, ballSize * rubberBandRadiusPercentage, bandSize, rubberBandColor);
     }
 
-    const offset = ballSize / 7;
-    const fillColor = (ballBackgroundColor === 'random') ? Color(rand(), rand(), rand()) : ballBackgroundColor;
-    var area = new paper.Path.Rectangle({
-      from: [startPoint[0] - offset, startPoint[1] - offset],
-      to: [endPoint[0] + offset, endPoint[1] + offset],
-      fillColor: fillColor,
-    });
+    if (ballCutoutPercentage !== 0) {
+      const fillColor = (ballBackgroundColor === 'random') ? randomColor() : ballBackgroundColor;
 
-    var hole = new paper.Path.Circle({
-      center: centerPoint,
-      radius: ballSize * cutoutPercentage,
-      fillColor: 'transparent',
-    });
+      const area = new paper.Path.Rectangle({
+        from: startPoint,
+        to: endPoint,
+        fillColor: fillColor,
+      });
 
-    var drilled = area.subtract(hole);
+      var hole = new paper.Path.Circle({
+        center: centerPoint,
+        radius: ballSize * ballCutoutPercentage,
+        fillColor: 'transparent',
+      });
 
-    area.remove()
+      var drilled = area.subtract(hole);
+
+      area.remove()
+    }
   }
 
   function addRubberBandBalls(
     ballSize,
-    numberOfRubberBands,
-    bandColors,
-    padding,
+    ballCutoutPercentage,
+    ballRadiusPercentage,
     ballBackgroundColor,
-    cutoutPercentage
+    numberOfRubberBands,
+    rubberBandRadiusPercentage,
+    rubberBandColors,
+    ballMargin
   ) {
 
-    var rectangle = (ballSize + padding) * 2;
+    var ballSquare = (ballSize + ballMargin) * 2;
 
-    var horizontalFits = Math.floor(window.innerWidth / rectangle);
-    var verticalFits = Math.floor(window.innerHeight / rectangle);
+    var horizontalFits = Math.floor(window.innerWidth / ballSquare);
+    var verticalFits = Math.floor(window.innerHeight / ballSquare);
 
-    // console.log("horizontalFits: " + horizontalFits);
-    // console.log("verticalFits: " + verticalFits)
-    // console.log("\n");
+    console.log("horizontalFits: " + horizontalFits);
+    console.log("verticalFits: " + verticalFits)
+    console.log("\n");
 
-    const horizontalAlignPadding = (window.innerWidth % rectangle);
-    const verticalAlignPadding = (window.innerHeight % rectangle);
+    const horizontalAlignPadding = (window.innerWidth % ballSquare);
+    const verticalAlignPadding = (window.innerHeight % ballSquare);
 
-    // console.log("horizontalAlignPadding: " + horizontalAlignPadding);
-    // console.log("verticalAlignPadding: " + verticalAlignPadding);
-    // console.log("\n");
+    console.log("horizontalAlignPadding: " + horizontalAlignPadding);
+    console.log("verticalAlignPadding: " + verticalAlignPadding);
+    console.log("\n");
 
     for (let i = 0; i < horizontalFits; i++) {
       for (let j = 0; j < verticalFits; j++) {
-        var startX = (i * (ballSize + padding) * 2) + padding + (horizontalAlignPadding / 2);
-        var startY = (j * (ballSize + padding) * 2) + padding + (verticalAlignPadding / 2);
+        var startX = (i * ballSquare) + ballMargin + (horizontalAlignPadding / 2);
+        var startY = (j * ballSquare) + ballMargin + (verticalAlignPadding / 2);
         const startPoint = [startX, startY];
 
         var endX = startX + (ballSize * 2);
@@ -226,10 +231,12 @@ window.onload = function () {
           startPoint,
           endPoint,
           ballSize,
-          numberOfRubberBands,
-          bandColors,
           ballBackgroundColor,
-          cutoutPercentage
+          ballCutoutPercentage,
+          ballRadiusPercentage,
+          numberOfRubberBands,
+          rubberBandRadiusPercentage,
+          rubberBandColors
         );
       }
     }
@@ -240,30 +247,32 @@ window.onload = function () {
   const seed = Math.random();
   const ballSize = 200;
   const numberOfRubberBands = 150;
-  const padding = 0;
-  const cutoutPercentage = .85
+  const rubberBandRadiusPercentage = .96;
+  const ballMargin = 20;
+  const ballCutoutPercentage = .9;
+  const ballRadiusPercentage = .89;
 
   // Colors
 
-  const bandColors = 'random';
-  const canvasBackgroundColor = 'white';
-  var ballBackgroundColor = canvasBackgroundColor;
-  var ballBackgroundColor = 'white';
+  const rubberBandColors = 'random';
+  const backgroundColor = '';
+  var ballBackgroundColor = 'random';
 
   // Main
 
   var rand = Math.seed(seed);
 
-  addBackground(canvasBackgroundColor);
+  document.body.style.backgroundColor = backgroundColor;
   addRubberBandBalls(
     ballSize,
-    numberOfRubberBands,
-    bandColors,
-    padding,
+    ballCutoutPercentage,
+    ballRadiusPercentage,
     ballBackgroundColor,
-    cutoutPercentage
+    numberOfRubberBands,
+    rubberBandRadiusPercentage,
+    rubberBandColors,
+    ballMargin
   );
-
 
   // Draw the view
   paper.view.draw();

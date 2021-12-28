@@ -2,7 +2,7 @@
   "name": "bsymptote",
   "version": "1.0.0",
   "description": "Generative art created with Paper.js",
-  "main": "index.html",
+  "main": "index.js",
   "scripts": {},
   "repository": {
     "type": "git",
@@ -15,6 +15,7 @@
   },
   "homepage": "https://github.com/blakegearin/paper.js_art#readme",
   "dependencies": {
+    "express": "^4.17.2",
     "paper": "^0.12.15"
   }
 }

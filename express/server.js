@@ -8,20 +8,21 @@ const bodyParser = require('body-parser');
 
 const router = express.Router();
 
-// router.get('/', (req, res) => {
-//   res.writeHead(200, { 'Content-Type': 'text/html' });
-//   res.write('<h1>Hello from Express.js!</h1>');
-//   res.end();
-// });
-// router.get('/another', (req, res) => res.json({ route: req.originalUrl }));
-// router.post('/', (req, res) => res.json({ postBody: req.body }));
-
 app.use('/static', express.static(path.join(__dirname, 'public')));
 app.use('/scripts', express.static(path.join(__dirname, 'node_modules/paper/dist')));
 
 router.get('/', (req, res) => {
+  // res.writeHead(200, { 'Content-Type': 'text/html' });
+  // res.write('<h1>Hello from Express.js!</h1>');
+  // res.end();
   res.sendFile(__dirname + "../views/genuary-1-2022.html");
 });
+router.get('/another', (req, res) => res.json({ route: req.originalUrl }));
+router.post('/', (req, res) => res.json({ postBody: req.body }));
+
+// router.get('/', (req, res) => {
+//   res.sendFile(__dirname + "../views/genuary-1-2022.html");
+// });
 
 app.use(bodyParser.json());
 app.use('/.netlify/functions/server', router);  // path must route to lambda

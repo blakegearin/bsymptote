@@ -43,8 +43,8 @@ app.use('/scripts', express.static('node_modules/paper/dist'));
 
 // router.get('/paper-full.js', (req, res) => res.sendFile(path.join(__dirname, '../node_modules/paper/dist/paper-full.js')));
 router.get('/', (req, res) => res.sendFile(path.join(__dirname, '../views/genuary-1-2022.html')));
-
-// router.post('/', (req, res) => res.json({ postBody: req.body }));
+router.get('/another', (req, res) => res.json({ route: req.originalUrl }));
+router.post('/', (req, res) => res.json({ postBody: req.body }));
 
 // router.get('/', (req, res) => {
 //   res.sendFile(__dirname + "../views/genuary-1-2022.html");

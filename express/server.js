@@ -68,12 +68,13 @@ router.get('/', (req, res) => {
 });
 
 // router.get('/style.css', (req, res) => res.sendFile(path.join(__dirname, '../public/stylesheets/style.css')));
-router.get('/style.css', (req, res) => res.sendFile(path.join(__dirname, '../style.css')));
-// router.get('/style.css', (req, res) => {
-//   res.writeHead(200, { 'Content-Type': 'text/css;charset=utf-8' });
-//   res.sendFile(path.join(__dirname, '../public/stylesheets/style.css'));
-//   res.end();
-// });
+// router.get('/style.css', (req, res) => res.sendFile(path.join(__dirname, '../style.css')));
+router.get('/style.css', (req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/css' });
+  // res.sendFile(path.join(__dirname, '../public/stylesheets/style.css'));
+  res.sendFile(path.join(__dirname, '../style.css'))
+  res.end();
+});
 
 router.get('/another', (req, res) => res.json({ route: req.originalUrl }));
 router.post('/', (req, res) => res.json({ postBody: req.body }));

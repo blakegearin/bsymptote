@@ -11,8 +11,8 @@ const router = express.Router();
 // router.use('/static', express.static(path.join(__dirname, 'public')));
 // router.use('/scripts', express.static(path.join(__dirname, 'node_modules/paper/dist')));
 
-app.use(express.static('public'));
-app.use('/scripts', express.static('node_modules/paper/dist'));
+router.use(express.static('public'));
+router.use('/scripts', express.static('node_modules/paper/dist'));
 
 // router.get('/', (req, res) => {
 //   res.writeHead(200, { 'Content-Type': 'text/html' });

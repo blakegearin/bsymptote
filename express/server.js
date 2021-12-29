@@ -13,14 +13,15 @@ app.use('/scripts', express.static(path.join(__dirname, 'node_modules/paper/dist
 
 router.get('/', (req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/html' });
-  res.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="static/stylesheets/style.css" as="style"><script type="text/javascript" src="scripts/paper-full.js"></script><script type="text/javascript" src="static/javascripts/genuary-1-2022.js" canvas="myCanvas"></script></head><body><canvas id="myCanvas"></canvas></body></html>');
+  res.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/static/stylesheets/style.css" as="style"><script type="text/javascript" src="/scripts/paper-full.js"></script><script type="text/javascript" src="/static/javascripts/genuary-1-2022.js" canvas="myCanvas"></script></head><body><canvas id="myCanvas"></canvas></body></html>');
   // res.sendFile(__dirname + "../views/genuary-1-2022.html");
   // res.sendFile(path.join(__dirname, "../views/genuary-1-2022.html"));
   // res.sendFile(path.join(__dirname, "../views/genuary-1-2022.html");
   res.end();
 });
 // router.get('/', (req, res) => res.sendFile(path.join(__dirname, "../views/genuary-1-2022.html")));
-router.get('/another', (req, res) => res.json({ route: req.originalUrl }));
+router.get('/static/stylesheets/style.css', (req, res) => res.sendFile(path.join(__dirname, '../public/stylesheets/style.css')));
+router.get('/static/javascripts/genuary-1-2022.js', (req, res) => res.sendFile(path.join(__dirname, '../public/javascripts/genuary-1-2022.js')));
 router.post('/', (req, res) => res.json({ postBody: req.body }));
 
 // router.get('/', (req, res) => {

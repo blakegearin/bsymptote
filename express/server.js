@@ -11,8 +11,8 @@ const router = express.Router();
 // router.use('/static', express.static(path.join(__dirname, 'public')));
 // router.use('/scripts', express.static(path.join(__dirname, 'node_modules/paper/dist')));
 
-app.use(express.static('public'));
-app.use('/scripts', express.static('node_modules/paper/dist'));
+// app.use(express.static('public'));
+// app.use('/scripts', express.static('node_modules/paper/dist'));
 
 // router.get('/', (req, res) => {
 //   res.writeHead(200, { 'Content-Type': 'text/html' });
@@ -67,7 +67,8 @@ router.get('/', (req, res) => {
   res.end();
 });
 
-router.get('/style.css', (req, res) => res.sendFile(path.join(__dirname, '../public/stylesheets/style.css')));
+// router.get('/style.css', (req, res) => res.sendFile(path.join(__dirname, '../public/stylesheets/style.css')));
+router.get('/style.css', (req, res) => res.sendFile('style.css', { root: path.join(__dirname, '../public') }));
 // router.get('/style.css', (req, res) => {
 //   res.writeHead(200, { 'Content-Type': 'text/css;charset=utf-8' });
 //   res.sendFile(path.join(__dirname, '../public/stylesheets/style.css'));

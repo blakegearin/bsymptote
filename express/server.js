@@ -63,7 +63,7 @@ router.get('/', (req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/html' });
   // res.write('<h1>Hello from Express.js!</h1>');
   // res.sendFile(path.join(__dirname, '../views/genuary-1-2022.html'));
-  res.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link type="text/css" rel="stylesheet" href="/stylesheets/style.css" as="style"><script type="text/javascript" src="/scripts/paper-full.js"></script><script type="text/javascript" src="/javascripts/genuary-1-2022.js" canvas="myCanvas"></script></head><body><h1>genuary-1-2022.html</h1><canvas id="myCanvas"></canvas></body></html>');
+  res.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link type="text/css" rel="stylesheet" href="/.netlify/functions/server/style.css" as="style"><script type="text/javascript" src="/.netlify/functions/server/paper-full.js"></script><script type="text/javascript" src="/.netlify/functions/server/genuary-1-2022.js" canvas="myCanvas"></script></head><body><h1>genuary-1-2022.html</h1><canvas id="myCanvas"></canvas></body></html>');
   res.end();
 });
 

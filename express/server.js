@@ -68,7 +68,7 @@ router.get('/', (req, res) => {
 });
 
 // router.get('/style.css', (req, res) => res.sendFile(path.join(__dirname, '../public/stylesheets/style.css')));
-router.get('/style.css', (req, res) => res.sendFile('style.css', { root: path.join(__dirname, '../public') }));
+router.get('/style.css', (req, res) => res.sendFile(path.join(__dirname, '../style.css')));
 // router.get('/style.css', (req, res) => {
 //   res.writeHead(200, { 'Content-Type': 'text/css;charset=utf-8' });
 //   res.sendFile(path.join(__dirname, '../public/stylesheets/style.css'));

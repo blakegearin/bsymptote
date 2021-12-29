@@ -14,18 +14,18 @@ const router = express.Router();
 app.use(express.static('public'));
 app.use('/scripts', express.static('node_modules/paper/dist'));
 
-router.get('/', (req, res) => {
-  res.writeHead(200, { 'Content-Type': 'text/html' });
-  res.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link type="text/css" href="/style.css" as="style"><script type="text/javascript;charset=utf-8" src="/paper-full.js"></script><script type="text/javascript;charset=utf-8" src="/genuary-1-2022.js" canvas="myCanvas"></script></head><body><h1>header</h1><canvas id="myCanvas"></canvas></body></html>');
-  res.sendFile(__dirname + "../views/genuary-1-2022.html");
-  res.sendFile(path.join(__dirname, "../views/genuary-1-2022.html"));
-  res.sendFile(path.join(__dirname, "../views/genuary-1-2022.html");
-  res.end();
+// router.get('/', (req, res) => {
+//   res.writeHead(200, { 'Content-Type': 'text/html' });
+//   res.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link type="text/css" href="/style.css" as="style"><script type="text/javascript;charset=utf-8" src="/paper-full.js"></script><script type="text/javascript;charset=utf-8" src="/genuary-1-2022.js" canvas="myCanvas"></script></head><body><h1>header</h1><canvas id="myCanvas"></canvas></body></html>');
+//   res.sendFile(__dirname + "../views/genuary-1-2022.html");
+//   res.sendFile(path.join(__dirname, "../views/genuary-1-2022.html"));
+//   res.sendFile(path.join(__dirname, "../views/genuary-1-2022.html");
+//   res.end();
 
 
-  res.writeHead(200, { 'Content-Type': 'text/html' });
-  res.sendFile(path.join(__dirname, '../views/genuary-1-2022.html'));
-});
+//   res.writeHead(200, { 'Content-Type': 'text/html' });
+//   res.sendFile(path.join(__dirname, '../views/genuary-1-2022.html'));
+// });
 
 
 

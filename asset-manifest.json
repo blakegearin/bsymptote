@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/paper.js_art/static/css/main.073c9b0a.css",
+    "main.js": "/paper.js_art/static/js/main.dbcae862.js",
+    "static/js/787.d1046299.chunk.js": "/paper.js_art/static/js/787.d1046299.chunk.js",
+    "static/media/logo.svg": "/paper.js_art/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/paper.js_art/index.html",
+    "main.073c9b0a.css.map": "/paper.js_art/static/css/main.073c9b0a.css.map",
+    "main.dbcae862.js.map": "/paper.js_art/static/js/main.dbcae862.js.map",
+    "787.d1046299.chunk.js.map": "/paper.js_art/static/js/787.d1046299.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.dbcae862.js"
+  ]
+}

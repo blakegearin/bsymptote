@@ -1,4 +1,6 @@
-window.onload = function () {
+import { paper } from 'paper';
+
+window.onload = function (){
   // Get a reference to the canvas object
   var canvas = document.getElementById('myCanvas');
   canvas.width = window.innerWidth;

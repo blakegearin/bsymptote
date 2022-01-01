@@ -2,6 +2,7 @@
   "name": "bsymptote",
   "version": "0.1.0",
   "description": "Generative art created with Paper.js",
+  "homepage": "https://blakegearin.github.io/paper.js_art/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/blakegearin/paper.js_art.git"
@@ -19,6 +20,7 @@
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
+    "gh-pages": "^3.2.3",
     "paper": "^0.12.15",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -27,6 +29,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

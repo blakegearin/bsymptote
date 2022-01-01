@@ -6,8 +6,8 @@ window.onload = function (){
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 
-  console.log("window.innerWidth: " + window.innerWidth);
-  console.log("window.innerHeight: " + window.innerHeight);
+  // console.log("window.innerWidth: " + window.innerWidth);
+  // console.log("window.innerHeight: " + window.innerHeight);
 
   // Create an empty project and a view for the canvas
   paper.setup(canvas);
@@ -203,16 +203,16 @@ window.onload = function (){
     var horizontalFits = Math.floor(window.innerWidth / ballSquare);
     var verticalFits = Math.floor(window.innerHeight / ballSquare);
 
-    console.log("horizontalFits: " + horizontalFits);
-    console.log("verticalFits: " + verticalFits)
-    console.log("\n");
+    // console.log("horizontalFits: " + horizontalFits);
+    // console.log("verticalFits: " + verticalFits)
+    // console.log("\n");
 
     const horizontalAlignPadding = (window.innerWidth % ballSquare);
     const verticalAlignPadding = (window.innerHeight % ballSquare);
 
-    console.log("horizontalAlignPadding: " + horizontalAlignPadding);
-    console.log("verticalAlignPadding: " + verticalAlignPadding);
-    console.log("\n");
+    // console.log("horizontalAlignPadding: " + horizontalAlignPadding);
+    // console.log("verticalAlignPadding: " + verticalAlignPadding);
+    // console.log("\n");
 
     for (let i = 0; i < horizontalFits; i++) {
       for (let j = 0; j < verticalFits; j++) {
@@ -247,7 +247,7 @@ window.onload = function (){
   // Amounts
 
   const seed = Math.random();
-  const ballSize = 200;
+  const ballSize = (window.innerWidth - 100) / 4;
   const numberOfRubberBands = 150;
   const rubberBandRadiusPercentage = .96;
   const ballMargin = 20;
@@ -257,7 +257,7 @@ window.onload = function (){
   // Colors
 
   const rubberBandColors = 'random';
-  const backgroundColor = '';
+  const backgroundColor = new paper.Color.random().toCSS(true);
   var ballBackgroundColor = 'random';
 
   // Main

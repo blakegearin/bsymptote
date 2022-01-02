@@ -1,16 +1,21 @@
-import { paper } from 'paper';
+import Paper, { Color, Path, Point, Rectangle} from "paper";
 
-window.onload = function (){
+function Genuary_1_2022({ params, location, navigate, searchParams, setSearchParams, refresh }) {
   // Get a reference to the canvas object
   var canvas = document.getElementById('myCanvas');
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
 
-  // console.log("window.innerWidth: " + window.innerWidth);
-  // console.log("window.innerHeight: " + window.innerHeight);
+  // 120px is the offset of the Random button
+  const windowHeight = window.innerHeight - 120;
+  const windowWidth = window.innerWidth;
+
+  canvas.width = windowWidth;
+  canvas.height = windowHeight;
+
+  // console.log('windowWidth: ' + windowWidth);
+  // console.log('windowHeight: ' + windowHeight);
 
   // Create an empty project and a view for the canvas
-  paper.setup(canvas);
+  Paper.setup(canvas);
 
   Math.seed = function (s) {
     return function () {
@@ -18,6 +23,19 @@ window.onload = function (){
       return s - Math.floor(s);
     };
   };
+
+  function findMinimum(value) {
+    if (toString.call(value) !== "[object Array]") return false;
+    return Math.min.apply(null, value);
+ }
+
+  function randomIntFromInterval(min, max, method = rand()) {
+    return Math.floor(method * (max - min + 1) + min);
+  }
+
+  function randomColor() {
+    return new Color(rand(), rand(), rand());
+  }
 
   function addRubberBandBall(
     startPoint,
@@ -44,19 +62,15 @@ window.onload = function (){
       G = (G < 255) ? G : 255;
       B = (B < 255) ? B : 255;
 
-      var RR = ((R.toString(16).length == 1) ? "0" + R.toString(16) : R.toString(16));
-      var GG = ((G.toString(16).length == 1) ? "0" + G.toString(16) : G.toString(16));
-      var BB = ((B.toString(16).length == 1) ? "0" + B.toString(16) : B.toString(16));
+      var RR = ((R.toString(16).length === 1) ? '0' + R.toString(16) : R.toString(16));
+      var GG = ((G.toString(16).length === 1) ? '0' + G.toString(16) : G.toString(16));
+      var BB = ((B.toString(16).length === 1) ? '0' + B.toString(16) : B.toString(16));
 
-      return "#" + RR + GG + BB;
+      return '#' + RR + GG + BB;
     }
 
     function randomFromArray(array) {
       return array[Math.floor(rand() * array.length)];
-    }
-
-    function randomIntFromInterval(min, max) {
-      return Math.floor(rand() * (max - min + 1) + min)
     }
 
     function getRandomCirclePoint(radius, square) {
@@ -74,7 +88,7 @@ window.onload = function (){
       var badRubberBand = true;
       while (badRubberBand) {
         badRubberBand = false;
-        var rubberBand = new paper.Path.Line({
+        var rubberBand = new Path.Line({
           from: getRandomCirclePoint(ballSize, square),
           to: getRandomCirclePoint(ballSize, square),
           strokeColor: rubberBandColor,
@@ -83,7 +97,7 @@ window.onload = function (){
           strokeCap: 'round',
           shadowColor: lightenDarkenColor(rubberBandColor, -50),
           shadowBlur: ballSize / 100,
-          shadowOffset: new paper.Point(0, (ballSize / 100)),
+          shadowOffset: new Point(0, (ballSize / 100)),
         });
 
         if (rubberBand.length < (ballSize / 1.33)) {
@@ -93,18 +107,14 @@ window.onload = function (){
       }
     }
 
-    function randomColor() {
-      return new paper.Color(rand(), rand(), rand());
-    }
-
     const bandSize = ballSize / 25;
-    const square = new paper.Rectangle({
+    const square = new Rectangle({
       from: startPoint,
       to: endPoint,
     });
 
     const centerPoint = square.center;
-    var ball = new paper.Path.Circle({
+    new Path.Circle({
       center: centerPoint,
       radius: ballSize * ballRadiusPercentage,
       fillColor: 'tan',
@@ -162,27 +172,26 @@ window.onload = function (){
     };
 
     for (let i = 0; i < numberOfRubberBands; i++) {
-      const rubberBandColor = new paper.Color(randomFromArray(colorArray)).toCSS(true);
+      const rubberBandColor = new Color(randomFromArray(colorArray)).toCSS(true);
       addRubberBand(square, ballSize * rubberBandRadiusPercentage, bandSize, rubberBandColor);
     }
 
     if (ballCutoutPercentage !== 0) {
       const fillColor = (ballBackgroundColor === 'random') ? randomColor() : ballBackgroundColor;
 
-      const area = new paper.Path.Rectangle({
+      const area = new Path.Rectangle({
         from: startPoint,
         to: endPoint,
         fillColor: fillColor,
       });
 
-      var hole = new paper.Path.Circle({
+      var hole = new Path.Circle({
         center: centerPoint,
         radius: ballSize * ballCutoutPercentage,
         fillColor: 'transparent',
       });
 
-      var drilled = area.subtract(hole);
-
+      area.subtract(hole);
       area.remove()
     }
   }
@@ -200,19 +209,19 @@ window.onload = function (){
 
     var ballSquare = (ballSize + ballMargin) * 2;
 
-    var horizontalFits = Math.floor(window.innerWidth / ballSquare);
-    var verticalFits = Math.floor(window.innerHeight / ballSquare);
+    var horizontalFits = Math.floor(windowWidth / ballSquare);
+    var verticalFits = Math.floor(windowHeight / ballSquare);
 
-    // console.log("horizontalFits: " + horizontalFits);
-    // console.log("verticalFits: " + verticalFits)
-    // console.log("\n");
+    // console.log('horizontalFits: ' + horizontalFits);
+    // console.log('verticalFits: ' + verticalFits)
+    // console.log('\n');
 
-    const horizontalAlignPadding = (window.innerWidth % ballSquare);
-    const verticalAlignPadding = (window.innerHeight % ballSquare);
+    const horizontalAlignPadding = (windowWidth % ballSquare);
+    const verticalAlignPadding = (windowHeight % ballSquare);
 
-    // console.log("horizontalAlignPadding: " + horizontalAlignPadding);
-    // console.log("verticalAlignPadding: " + verticalAlignPadding);
-    // console.log("\n");
+    // console.log('horizontalAlignPadding: ' + horizontalAlignPadding);
+    // console.log('verticalAlignPadding: ' + verticalAlignPadding);
+    // console.log('\n');
 
     for (let i = 0; i < horizontalFits; i++) {
       for (let j = 0; j < verticalFits; j++) {
@@ -223,11 +232,6 @@ window.onload = function (){
         var endX = startX + (ballSize * 2);
         var endY = startY + (ballSize * 2);
         const endPoint = [endX, endY];
-
-        // console.log("X: " + i, "Y: " + j);
-        // console.log("startPoint: " + startPoint);
-        // console.log("endPoint: " + endPoint);
-        // console.log("\n");
 
         addRubberBandBall(
           startPoint,
@@ -244,25 +248,28 @@ window.onload = function (){
     }
   }
 
-  // Amounts
+  var seed = searchParams.get('seed');
 
-  const seed = Math.random();
-  const ballSize = (window.innerWidth - 100) / 4;
-  const numberOfRubberBands = 150;
+  if (location.search === '' || refresh === true) {
+    seed = randomIntFromInterval(1, 10000, Math.random());
+    setSearchParams({ seed: seed });
+  }
+  var rand = Math.seed(seed);
+
+  const ballSize = randomIntFromInterval(20, (findMinimum([windowWidth, windowHeight]) / 2));
+  const numberOfRubberBands = randomIntFromInterval(100, 200);
   const rubberBandRadiusPercentage = .96;
-  const ballMargin = 20;
+  const ballMargin = randomIntFromInterval(0, 20);
   const ballCutoutPercentage = .9;
   const ballRadiusPercentage = .89;
 
   // Colors
 
   const rubberBandColors = 'random';
-  const backgroundColor = new paper.Color.random().toCSS(true);
+  const backgroundColor = randomColor().toCSS(true);
   var ballBackgroundColor = 'random';
 
   // Main
-
-  var rand = Math.seed(seed);
 
   document.body.style.backgroundColor = backgroundColor;
   addRubberBandBalls(
@@ -275,7 +282,6 @@ window.onload = function (){
     rubberBandColors,
     ballMargin
   );
-
-  // Draw the view
-  paper.view.draw();
 }
+
+export default Genuary_1_2022;

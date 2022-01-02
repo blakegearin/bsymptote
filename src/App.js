@@ -1,29 +1,37 @@
-// import logo from './logo.svg';
-// import './App.css';
+import React, { useEffect } from 'react';
+import { useParams, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+
+import RandomButton from './RandomButton';
+import Genuary_1_2022 from './genuary/1-2022.js';
+import './App.css';
 
 function App() {
+  const params = useParams();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  function newGenuary_1_2022(refresh = false) {
+    new Genuary_1_2022(
+      { params, location, navigate, searchParams, setSearchParams, refresh }
+    );
+  }
+
+  useEffect(() => {
+    newGenuary_1_2022();
+  });
+
   return (
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Edit <code>src/App.js</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    //   <canvas id="myCanvas"></canvas>
-    // </div>
-    <canvas id="myCanvas"></canvas>
+    <div>
+      <RandomButton
+        location={location}
+        navigate={navigate}
+        searchParams={searchParams}
+        setSearchParams={setSearchParams}
+      />
+      <canvas id='myCanvas'></canvas>
+    </div>
   );
 }
-
-require('./genuary-1-2022.js');
 
 export default App;

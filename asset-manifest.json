@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/paper.js_art/static/css/main.f7b26191.css",
-    "main.js": "/paper.js_art/static/js/main.e68a3d6d.js",
-    "static/js/787.d1046299.chunk.js": "/paper.js_art/static/js/787.d1046299.chunk.js",
+    "main.css": "/paper.js_art/static/css/main.aaa24889.css",
+    "main.js": "/paper.js_art/static/js/main.dc85c7cb.js",
+    "static/js/988.4d3a9c18.chunk.js": "/paper.js_art/static/js/988.4d3a9c18.chunk.js",
     "index.html": "/paper.js_art/index.html",
-    "main.f7b26191.css.map": "/paper.js_art/static/css/main.f7b26191.css.map",
-    "main.e68a3d6d.js.map": "/paper.js_art/static/js/main.e68a3d6d.js.map",
-    "787.d1046299.chunk.js.map": "/paper.js_art/static/js/787.d1046299.chunk.js.map"
+    "main.aaa24889.css.map": "/paper.js_art/static/css/main.aaa24889.css.map",
+    "main.dc85c7cb.js.map": "/paper.js_art/static/js/main.dc85c7cb.js.map",
+    "988.4d3a9c18.chunk.js.map": "/paper.js_art/static/js/988.4d3a9c18.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f7b26191.css",
-    "static/js/main.e68a3d6d.js"
+    "static/css/main.aaa24889.css",
+    "static/js/main.dc85c7cb.js"
   ]
 }

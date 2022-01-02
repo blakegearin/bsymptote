@@ -4,6 +4,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
+import WebFont from 'webfontloader';
+
+WebFont.load({
+  google: {
+    families: ['Licorice', 'sans-serif']
+  }
+});
 
 ReactDOM.render(
   <React.StrictMode>

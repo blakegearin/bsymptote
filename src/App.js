@@ -23,13 +23,13 @@ function App() {
 
   return (
     <div>
+      <canvas id='myCanvas'></canvas>
       <RandomButton
         location={location}
         navigate={navigate}
         searchParams={searchParams}
         setSearchParams={setSearchParams}
       />
-      <canvas id='myCanvas'></canvas>
     </div>
   );
 }

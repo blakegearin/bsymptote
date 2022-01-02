@@ -1,18 +1,16 @@
 #randomBtn
 {
   display: block;
-  width: 90%;
-  margin: 20px auto;
-  padding: 20px 76px;
-
-  box-shadow: 2px 4px 0px 0px #488f35;
-	background:linear-gradient(to bottom, #44c767 5%, #5cbf2a 100%);
+  width: 50%;
+  margin: 30px auto;
+  padding: 10px;
+  box-shadow: 0px 5px 0px 0px #488f35;
+	background: #44c767;
 	background-color:#44c767;
 	border-radius:32px;
 	border:3px solid #4c924c;
-	cursor:pointer;
+	cursor: pointer;
 	color:#fff;
-	font-family: Arial;
 	font-size: 24px;
   line-height: 34px;
 	font-weight: bold;
@@ -21,7 +19,12 @@
 	text-shadow:1px 0px 0px #2f6627;
 }
 
-.myButton:active {
-	position: relative;
-	top: 4px;
+#randomBtn:hover {
+  background-color: #49d46e;
+}
+
+#randomBtn:active {
+  background-color: #3bad5a;
+  box-shadow: none;
+  transform: translateY(4px);
 }

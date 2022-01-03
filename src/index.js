@@ -8,7 +8,7 @@ import WebFont from 'webfontloader';
 
 WebFont.load({
   google: {
-    families: ['Licorice', 'sans-serif']
+    families: ['Ubuntu', 'sans-serif']
   }
 });
 

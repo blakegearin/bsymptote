@@ -198,30 +198,20 @@ function Genuary_1_2022({ params, location, navigate, searchParams, setSearchPar
 
   function addRubberBandBalls(
     ballSize,
+    ballMargin,
+    ballSquare,
+    horizontalFits,
+    verticalFits,
     ballCutoutPercentage,
     ballRadiusPercentage,
     ballBackgroundColor,
     numberOfRubberBands,
     rubberBandRadiusPercentage,
     rubberBandColors,
-    ballMargin
   ) {
-
-    var ballSquare = (ballSize + ballMargin) * 2;
-
-    var horizontalFits = Math.floor(windowWidth / ballSquare);
-    var verticalFits = Math.floor(windowHeight / ballSquare);
-
-    // console.log('horizontalFits: ' + horizontalFits);
-    // console.log('verticalFits: ' + verticalFits)
-    // console.log('\n');
 
     const horizontalAlignPadding = (windowWidth % ballSquare);
     const verticalAlignPadding = (windowHeight % ballSquare);
-
-    // console.log('horizontalAlignPadding: ' + horizontalAlignPadding);
-    // console.log('verticalAlignPadding: ' + verticalAlignPadding);
-    // console.log('\n');
 
     for (let i = 0; i < horizontalFits; i++) {
       for (let j = 0; j < verticalFits; j++) {
@@ -248,24 +238,39 @@ function Genuary_1_2022({ params, location, navigate, searchParams, setSearchPar
     }
   }
 
+  // Inputs
+
   var seed = searchParams.get('seed');
 
-  if (location.search === '' || refresh === true) {
+  if (seed === null || refresh === true) {
     seed = randomIntFromInterval(1, 10000, Math.random());
     setSearchParams({ seed: seed });
   }
   var rand = Math.seed(seed);
 
-  const ballSize = randomIntFromInterval(20, (findMinimum([windowWidth, windowHeight]) / 2));
+  var ballSize, ballMargin, ballSquare;
+  var [horizontalFits, verticalFits] = [0, 0];
+  const ballSizeMaximum = findMinimum([windowWidth, windowHeight]);
+
+  while(horizontalFits === 0 || verticalFits === 0) {
+    ballSize = randomIntFromInterval(20, ballSizeMaximum);
+    // const ballSize = 20;
+    ballMargin = randomIntFromInterval(0, 20);
+
+    ballSquare = (ballSize + ballMargin) * 2;
+    horizontalFits = Math.floor(windowWidth / ballSquare);
+    verticalFits = Math.floor(windowHeight / ballSquare);
+  }
+
   const numberOfRubberBands = randomIntFromInterval(100, 200);
   const rubberBandRadiusPercentage = .96;
-  const ballMargin = randomIntFromInterval(0, 20);
+
   const ballCutoutPercentage = .9;
   const ballRadiusPercentage = .89;
 
   // Colors
 
-  const rubberBandColors = 'random';
+  const rubberBandColors = searchParams.get('rubberBandColors') || 'random';
   const backgroundColor = randomColor().toCSS(true);
   var ballBackgroundColor = 'random';
 
@@ -274,14 +279,19 @@ function Genuary_1_2022({ params, location, navigate, searchParams, setSearchPar
   document.body.style.backgroundColor = backgroundColor;
   addRubberBandBalls(
     ballSize,
+    ballMargin,
+    ballSquare,
+    horizontalFits,
+    verticalFits,
     ballCutoutPercentage,
     ballRadiusPercentage,
     ballBackgroundColor,
     numberOfRubberBands,
     rubberBandRadiusPercentage,
     rubberBandColors,
-    ballMargin
   );
+  // document.getElementById('spinnerBackground').style.display = 'none';
+  // document.getElementById('randomBtn').style.display = '';
 }
 
 export default Genuary_1_2022;

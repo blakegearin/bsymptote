@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.945ce004.css",
-    "main.js": "/static/js/main.c20d739a.js",
-    "static/js/988.4d3a9c18.chunk.js": "/static/js/988.4d3a9c18.chunk.js",
+    "main.css": "/static/css/main.6db7ca89.css",
+    "main.js": "/static/js/main.874113dd.js",
+    "static/media/rubber-band-ball.png": "/static/media/rubber-band-ball.d9d3fea72363d5a31d32.png",
     "index.html": "/index.html",
-    "main.945ce004.css.map": "/static/css/main.945ce004.css.map",
-    "main.c20d739a.js.map": "/static/js/main.c20d739a.js.map",
-    "988.4d3a9c18.chunk.js.map": "/static/js/988.4d3a9c18.chunk.js.map"
+    "static/media/logo.svg": "/static/media/logo.634cb80a27f43f197beef81d43654b4d.svg",
+    "main.6db7ca89.css.map": "/static/css/main.6db7ca89.css.map",
+    "main.874113dd.js.map": "/static/js/main.874113dd.js.map"
   },
   "entrypoints": [
-    "static/css/main.945ce004.css",
-    "static/js/main.c20d739a.js"
+    "static/css/main.6db7ca89.css",
+    "static/js/main.874113dd.js"
   ]
 }

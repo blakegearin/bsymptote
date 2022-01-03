@@ -1,6 +1,6 @@
 import Paper, { Color, Path, Point, Rectangle} from "paper";
 
-function Genuary_1_2022({ params, location, navigate, searchParams, setSearchParams, refresh }) {
+function Genuary_1_2022({ params, location, navigate, searchParams, setSearchParams }) {
   // Get a reference to the canvas object
   var canvas = document.getElementById('myCanvas');
 
@@ -113,13 +113,6 @@ function Genuary_1_2022({ params, location, navigate, searchParams, setSearchPar
       to: endPoint,
     });
 
-    const centerPoint = square.center;
-    new Path.Circle({
-      center: centerPoint,
-      radius: ballSize * ballRadiusPercentage,
-      fillColor: 'tan',
-    });
-
     const colorPallettes = {
       webRainbow: [
         'coral',
@@ -170,6 +163,13 @@ function Genuary_1_2022({ params, location, navigate, searchParams, setSearchPar
     } else {
       colorArray = colorPallettes[rubberBandColors];
     };
+
+    const centerPoint = square.center;
+    new Path.Circle({
+      center: centerPoint,
+      radius: ballSize * ballRadiusPercentage,
+      fillColor: new Color(randomFromArray(colorArray)).toCSS(true),
+    });
 
     for (let i = 0; i < numberOfRubberBands; i++) {
       const rubberBandColor = new Color(randomFromArray(colorArray)).toCSS(true);
@@ -242,10 +242,12 @@ function Genuary_1_2022({ params, location, navigate, searchParams, setSearchPar
 
   var seed = searchParams.get('seed');
 
-  if (seed === null || refresh === true) {
+  if (seed === null || seed === 0 || seed === '') {
     seed = randomIntFromInterval(1, 10000, Math.random());
     setSearchParams({ seed: seed });
   }
+
+  console.log("seed: " + seed);
   var rand = Math.seed(seed);
 
   var ballSize, ballMargin, ballSquare;

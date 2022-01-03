@@ -4,7 +4,9 @@ html, body
   padding: 0 !important;
 }
 
-body
+body,
+p,
+button
 {
   font-family: 'Ubuntu', sans-serif;
   -webkit-font-smoothing: antialiased;

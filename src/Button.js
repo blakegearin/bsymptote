@@ -8,8 +8,8 @@ class Button extends React.Component {
         className={this.props.className}
         onClick={this.props.onClick}
         style={this.props.style}
+        dangerouslySetInnerHTML={{ __html: this.props.title }}
       >
-        {this.props.title}
       </button>
     );
   }

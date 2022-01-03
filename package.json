@@ -1,19 +1,20 @@
 {
   "name": "bsymptote",
   "version": "0.1.0",
-  "description": "Generative art created with Paper.js",
+  "description": "art by bsymptote",
   "homepage": "http://bsymptote.com/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/blakegearin/paper.js_art.git"
+    "url": "git+https://github.com/blakegearin/bsymptote.git"
   },
   "keywords": [
-    "paper.js"
+    "paper.js",
+    "react"
   ],
   "author": "Blake Gearin",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/blakegearin/paper.js_art/issues"
+    "url": "https://github.com/blakegearin/bsymptote/issues"
   },
   "private": true,
   "dependencies": {

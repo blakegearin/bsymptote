@@ -1,9 +1,7 @@
-#randomBtn
+.rubber-band-balls button
 {
-  display: block;
-  width: 50%;
   margin: 30px auto;
-  padding: 10px;
+  padding: 10px 5%;
   box-shadow: 0px 5px 0px 0px #488f35;
 	background: #44c767;
 	background-color:#44c767;
@@ -16,15 +14,30 @@
 	font-weight: bold;
 	text-decoration: none;
 	text-shadow:1px 0px 0px #2f6627;
-  letter-spacing: 5px;
 }
 
-#randomBtn:hover {
+.rubber-band-balls button:hover {
   background-color: #49d46e;
 }
 
-#randomBtn:active {
+.rubber-band-balls button:active {
   background-color: #3bad5a;
   box-shadow: none;
   transform: translateY(4px);
+}
+
+#home-button
+{
+  float: left;
+  margin-left: 10%;
+  letter-spacing: 2px;
+}
+
+#random-button
+{
+  /* display: block; */
+  /* width: 50%; */
+  float: right;
+  margin-right: 10%;
+  letter-spacing: 5px;
 }

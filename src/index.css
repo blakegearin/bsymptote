@@ -28,3 +28,23 @@ code
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
 }
+
+/* .center
+{
+  text-align: center;
+  position: relative;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+} */
+
+.center
+{
+  position: absolute;
+  margin: 0;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}

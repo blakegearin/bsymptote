@@ -1,0 +1,32 @@
+#app-logo
+{
+  width: 30vh;
+}
+
+h1
+{
+  font-size: 5vh;
+}
+
+h1 > span
+{
+  position: relative;
+  top: -4vh;
+  color: transparent;
+
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: white;
+  text-decoration-thickness: 3px;
+}
+
+#rubber-band-balls-link
+{
+  color: white;
+  text-decoration: none;
+}
+
+#rubber-band-ball-icon
+{
+  width: 125px;
+}

@@ -38,7 +38,7 @@ export default function RubberBandBalls() {
     function findMinimum(value) {
       if (toString.call(value) !== '[object Array]') return false;
       return Math.min.apply(null, value);
-  }
+    }
 
     function randomIntFromInterval(min, max, method = rand()) {
       return Math.floor(method * (max - min + 1) + min);
@@ -339,7 +339,7 @@ export default function RubberBandBalls() {
       { params, location, navigate, searchParams, setSearchParams }
     );
     document.getElementById('random-button').style.display = '';
-    document.getElementById('home-button').style.display = '';
+    document.getElementsByClassName('home-button')[0].style.display = '';
     toggleSpinner(false);
   }, [params, location, navigate, searchParams, setSearchParams]);
 
@@ -347,9 +347,8 @@ export default function RubberBandBalls() {
     <div className='rubber-band-balls'>
       <canvas id='rubber-band-balls-canvas'></canvas>
       <Button
-        id='home-button'
         title={'Home'}
-        className='no-select'
+        className='no-select home-button'
         onClick={() => {
           toggleSpinner(true);
           navigate(`/`);
@@ -359,7 +358,7 @@ export default function RubberBandBalls() {
       <Button
         id='random-button'
         title={spanEachCharacterWithTilt('Random')}
-        className='no-select'
+        className='no-select activate-button'
         onClick={() => {
           toggleSpinner(true);
           navigate(`/rubber-band-balls`);

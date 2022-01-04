@@ -1,0 +1,158 @@
+:root
+{
+  --dice-size: 50px;
+  --translateZ: calc(var(--dice-size) / 2);
+}
+
+.dice
+{
+  position: relative;
+  width: var(--dice-size);
+  height: var(--dice-size);
+  transform-style: preserve-3d;
+  transition: transform 1s;
+}
+
+.dot
+{
+  position: absolute;
+  width: calc(var(--dice-size) / 5);
+  height: calc(var(--dice-size) / 5);
+  margin:
+    calc(var(--dice-size) / -10)
+    calc(var(--dice-size) / 25)
+    calc(var(--dice-size) / 25)
+    calc(var(--dice-size) / -10);
+  border-radius: calc(var(--dice-size) / 5);
+  background-color: black;
+}
+
+.side
+{
+  position: absolute;
+  background-color: #ffF;
+  border-radius: calc(var(--dice-size) / 25);
+  width: var(--dice-size);
+  height: var(--dice-size);
+  border: 1px solid #e5e5e5;
+  text-align: center;
+  line-height: 4em;
+}
+
+.side:nth-child(1)
+{
+  transform: translateZ(var(--translateZ));
+}
+
+.side:nth-child(6)
+{
+  transform: rotateY(90deg) translateZ(var(--translateZ));
+}
+
+.side:nth-child(3)
+{
+  transform: rotateY(-90deg) translateZ(var(--translateZ));
+}
+
+.side:nth-child(4)
+{
+  transform: rotateX(90deg) translateZ(var(--translateZ));
+}
+
+.side:nth-child(5)
+{
+  transform: rotateX(-90deg) translateZ(var(--translateZ));
+}
+
+.side:nth-child(2)
+{
+  transform: rotateY(-180deg) translateZ(var(--translateZ));
+}
+
+.show-1
+{
+  transform: rotateX(720deg) rotateZ(-720deg);
+}
+
+.show-2
+{
+  transform: rotateX(-900deg) rotateZ(1080deg);
+  /* transform: rotateX(-900deg) rotateZ(calc(randomRotation() + 1080deg)); */
+}
+
+.show-3
+{
+  transform: rotateY(810deg) rotateZ(720deg);
+  /* transform: rotateY(810deg) rotateZ(720deg) rotateX(randomRotation()); */
+}
+
+.show-4
+{
+  transform: rotateX(-810deg) rotateZ(-1080deg);
+}
+
+.show-5
+{
+  transform: rotateX(450deg) rotateZ(-720deg);
+}
+
+.show-6
+{
+  transform: rotateY(-450deg) rotateZ(-1440deg);
+  /* transform: rotateY(-450deg) rotateZ(-1440deg) rotateX(randomRotation()); */
+}
+
+.two-1,
+.three-1,
+.four-1,
+.five-1,
+.six-1
+{
+  top: 20%;
+  left: 20%;
+}
+
+.four-3,
+.five-3,
+.six-4
+{
+  top: 20%;
+  left: 80%;
+}
+
+.one-1,
+.three-2,
+.five-5
+{
+  top: 50%;
+  left: 50%;
+}
+
+.four-2,
+.five-2,
+.six-3
+{
+  top: 80%;
+  left: 20%;
+}
+
+.two-2,
+.three-3,
+.four-4,
+.five-4,
+.six-6
+{
+  top: 80%;
+  left: 80%;
+}
+
+.six-2
+{
+  top: 50%;
+  left: 20%;
+}
+
+.six-5 {
+  top: 50%;
+  left: 80%;
+}

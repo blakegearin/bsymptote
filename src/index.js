@@ -9,6 +9,8 @@ import WebFont from 'webfontloader';
 import reportWebVitals from './reportWebVitals';
 import App from './routes/App';
 import RubberBandBalls from './routes/RubberBandBalls';
+import Dice from './routes/Dice';
+
 import './index.css';
 
 WebFont.load({
@@ -28,6 +30,10 @@ render(
       <Route
         path='rubber-band-balls'
         element={<RubberBandBalls />}
+      />
+      <Route
+        path='d'
+        element={<Dice />}
       />
     </Routes>
   </BrowserRouter>,

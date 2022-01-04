@@ -21,20 +21,15 @@ export default function App() {
     <div>
       <canvas id='backgroundCanvas'></canvas>
       <div className='center'>
-        {/* <img
-          id='app-logo'
-          src={AppLogo}
-          alt='bsymptote logo'
-        /> */}
         <img
           id='app-logo'
           src={AppLogo}
           alt='logo'
         />
-        <h1>
+        <h1 className='no-select'>
           bysmptote
           <br></br>
-          <span>basmatote</span>
+          <span className='no-select'>xoxoxo</span>
         </h1>
         <Link
           id='rubber-band-balls-link'

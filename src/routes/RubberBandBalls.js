@@ -267,7 +267,7 @@ export default function RubberBandBalls() {
 
     while(horizontalFits === 0 || verticalFits === 0) {
       ballSize = randomIntFromInterval(20, ballSizeMaximum);
-      ballMargin = randomIntFromInterval(0, 20);
+      ballMargin = randomIntFromInterval(0, 100);
 
       ballSquare = (ballSize + ballMargin) * 2;
       horizontalFits = Math.floor(windowWidth / ballSquare);

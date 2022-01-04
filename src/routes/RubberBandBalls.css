@@ -8,12 +8,12 @@
 	border-radius:32px;
 	border:3px solid #4c924c;
 	cursor: pointer;
-	color:#fff;
+	color: #fff;
 	font-size: 24px;
   line-height: 34px;
 	font-weight: bold;
 	text-decoration: none;
-	text-shadow:1px 0px 0px #2f6627;
+	text-shadow: 1px 0px 0px #2f6627;
 }
 
 .rubber-band-balls button:hover {

@@ -27,7 +27,7 @@ export default function App() {
           alt='logo'
         />
         <h1 className='no-select'>
-          bysmptote
+          bsymptote
           <br></br>
           <span className='no-select'>xxxxxx</span>
         </h1>

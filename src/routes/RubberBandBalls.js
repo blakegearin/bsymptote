@@ -289,6 +289,8 @@ export default function RubberBandBalls() {
     // Main
 
     document.body.style.backgroundColor = backgroundColor;
+    canvas.style.background = backgroundColor;
+    document.getElementById('root').style.background = backgroundColor;
     addRubberBandBalls(
       ballSize,
       ballMargin,

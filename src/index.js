@@ -1,13 +1,13 @@
-import { render } from "react-dom";
+import { render } from 'react-dom';
 import {
   BrowserRouter,
   Routes,
   Route
-} from "react-router-dom";
+} from 'react-router-dom';
 import WebFont from 'webfontloader';
 
-
-import App from "./routes/App";
+import reportWebVitals from './reportWebVitals';
+import App from './routes/App';
 import RubberBandBalls from './routes/RubberBandBalls';
 import './index.css';
 
@@ -17,13 +17,24 @@ WebFont.load({
   }
 });
 
-const rootElement = document.getElementById("root");
+const rootElement = document.getElementById('root');
 render(
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<App />} />
-      <Route path="rubber-band-balls" element={<RubberBandBalls />} />
+      <Route
+        path='/'
+        element={<App />}
+      />
+      <Route
+        path='rubber-band-balls'
+        element={<RubberBandBalls />}
+      />
     </Routes>
   </BrowserRouter>,
   rootElement
 );
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();

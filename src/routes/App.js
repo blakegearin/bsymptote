@@ -33,7 +33,7 @@ export default function App() {
         </h1>
         <Link
           id='rubber-band-balls-link'
-          to="/rubber-band-balls"
+          to='/rubber-band-balls'
         >
           <img
           id='rubber-band-ball-icon'

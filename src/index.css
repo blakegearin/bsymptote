@@ -29,15 +29,6 @@ code
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 
-/* .center
-{
-  text-align: center;
-  position: relative;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-} */
-
 .center
 {
   position: absolute;

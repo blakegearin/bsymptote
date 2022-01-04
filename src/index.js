@@ -8,8 +8,8 @@ import WebFont from 'webfontloader';
 
 import reportWebVitals from './reportWebVitals';
 import Home from './home/Home';
-import RubberBandBalls from './rubber-band-balls/RubberBandBalls';
-import Dice from './dice/Dice';
+import RubberBandBalls from './projects/rubber-band-balls/RubberBandBalls';
+import Dice from './projects/dice/Dice';
 
 import './index.css';
 

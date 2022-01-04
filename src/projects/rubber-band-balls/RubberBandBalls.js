@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useParams, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import Paper, { Color, Path, Point, Rectangle} from 'paper';
 
-import Button from '../Button';
+import Button from '../../Button';
 import './RubberBandBalls.css';
 
 export default function RubberBandBalls() {

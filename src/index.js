@@ -7,9 +7,9 @@ import {
 import WebFont from 'webfontloader';
 
 import reportWebVitals from './reportWebVitals';
-import App from './routes/App';
-import RubberBandBalls from './routes/RubberBandBalls';
-import Dice from './routes/Dice';
+import Home from './home/Home';
+import RubberBandBalls from './rubber-band-balls/RubberBandBalls';
+import Dice from './dice/Dice';
 
 import './index.css';
 
@@ -25,7 +25,7 @@ render(
     <Routes>
       <Route
         path='/'
-        element={<App />}
+        element={<Home />}
       />
       <Route
         path='rubber-band-balls'

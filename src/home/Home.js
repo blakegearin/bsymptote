@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import './App.css';
 import Background from './Background';
 import AppLogo from './logo.svg';
 import RubberBandBall from './rubber-band-ball.svg';
 
-export default function App() {
+import './Home.css';
+
+export default function Home() {
   function toggleSpinner(loading) {
     document.getElementById('spinnerBackground').style.display = loading ? '' : 'none';
   }

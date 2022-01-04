@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/static/css/main.d5f945de.css",
-    "main.js": "/static/js/main.7ddd4d43.js",
+    "main.js": "/static/js/main.2e27066c.js",
     "static/media/rubber-band-ball.svg": "/static/media/rubber-band-ball.514f88f54dd6ef4e43edea3fc6417670.svg",
     "index.html": "/index.html",
     "static/media/logo.svg": "/static/media/logo.634cb80a27f43f197beef81d43654b4d.svg",
     "main.d5f945de.css.map": "/static/css/main.d5f945de.css.map",
-    "main.7ddd4d43.js.map": "/static/js/main.7ddd4d43.js.map"
+    "main.2e27066c.js.map": "/static/js/main.2e27066c.js.map"
   },
   "entrypoints": [
     "static/css/main.d5f945de.css",
-    "static/js/main.7ddd4d43.js"
+    "static/js/main.2e27066c.js"
   ]
 }

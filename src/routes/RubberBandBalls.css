@@ -2,28 +2,13 @@
 {
   margin: 30px auto;
   padding: 10px 5%;
-  box-shadow: 0px 5px 0px 0px #488f35;
-	background: #44c767;
-	background-color:#44c767;
-	border-radius:32px;
-	border:3px solid #4c924c;
+	border-radius: 32px;
 	cursor: pointer;
 	color: #fff;
 	font-size: 24px;
   line-height: 34px;
 	font-weight: bold;
 	text-decoration: none;
-	text-shadow: 1px 0px 0px #2f6627;
-}
-
-.rubber-band-balls button:hover {
-  background-color: #49d46e;
-}
-
-.rubber-band-balls button:active {
-  background-color: #3bad5a;
-  box-shadow: none;
-  transform: translateY(4px);
 }
 
 #home-button
@@ -31,13 +16,41 @@
   float: left;
   margin-left: 10%;
   letter-spacing: 2px;
+
+	background-color: #0fb8b6;
+  border:3px solid #0e8d8b;
+  box-shadow: 0px 5px 0px 0px #0e8d8b;
+  text-shadow: 1px 0px 0px #086463;
+}
+
+#home-button:active
+{
+  box-shadow: none;
+  transform: translateY(4px);
+}
+
+#home-button:hover {
+  background-color: #1fc0bd;;
 }
 
 #random-button
 {
-  /* display: block; */
-  /* width: 50%; */
   float: right;
   margin-right: 10%;
   letter-spacing: 5px;
+
+  background-color: #71cc44;
+  border:3px solid #4c924c;
+  box-shadow: 0px 5px 0px 0px #488f35;
+  text-shadow: 1px 0px 0px #35611f;
+}
+
+#random-button:active
+{
+  box-shadow: none;
+  transform: translateY(4px);
+}
+
+#random-button:hover {
+  background-color: #7dce54;
 }

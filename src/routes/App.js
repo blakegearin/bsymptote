@@ -29,7 +29,7 @@ export default function App() {
         <h1 className='no-select'>
           bysmptote
           <br></br>
-          <span className='no-select'>xoxoxo</span>
+          <span className='no-select'>xxxxxx</span>
         </h1>
         <Link
           id='rubber-band-balls-link'

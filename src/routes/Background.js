@@ -30,7 +30,7 @@ export default function Background() {
     }
   }
 
-  Utils.simplex = new SimplexNoise('seed')
+  Utils.simplex = new SimplexNoise('seed');
 
   var config = {
     bgColor: chroma({ h: 230, s: 0.5, l: 0.92}).hex(),

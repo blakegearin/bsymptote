@@ -347,7 +347,7 @@ export default function RubberBandBalls() {
     <div className='rubber-band-balls'>
       <canvas id='rubber-band-balls-canvas'></canvas>
       <Button
-        title={'Home'}
+        title='Home'
         className='no-select home-button'
         onClick={() => {
           toggleSpinner(true);

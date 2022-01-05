@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <div>
       <canvas id='backgroundCanvas'></canvas>
-      <div className='center'>
+      <div className='all-center'>
         <img
           id='app-logo'
           src={AppLogo}

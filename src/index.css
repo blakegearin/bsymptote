@@ -31,6 +31,12 @@ code
 
 .center
 {
+  text-align: center;
+  margin: auto;
+}
+
+.all-center
+{
   position: absolute;
   margin: 0;
   top: 50%;
@@ -38,4 +44,89 @@ code
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   text-align: center;
+}
+
+button
+{
+  margin: 30px auto;
+  padding: 10px 5%;
+	border-radius: 32px;
+	cursor: pointer;
+	color: #fff;
+	font-size: 1em;
+  line-height: 34px;
+	font-weight: bold;
+	text-decoration: none;
+  letter-spacing: 2px;
+}
+
+.home-button
+{
+  float: left;
+  margin-left: 5%;
+
+  text-shadow: 1px 0px 0px #086463;
+
+	background-color: #0fb8b6;
+  border: 3px solid #0e8d8b;
+  box-shadow: 0px 5px 0px 0px #0e8d8b;
+}
+
+.home-button:active
+{
+  box-shadow: none;
+  transform: translateY(4px);
+}
+
+.home-button:hover
+{
+  background-color: #1fc0bd;;
+}
+
+.activate-button
+{
+  float: right;
+  margin-right: 5%;
+
+  background-color: #71cc44;
+  text-shadow: 1px 0px 0px #35611f;
+
+  border: 3px solid #4c924c;
+  box-shadow: 0px 5px 0px 0px #488f35;
+}
+
+.activate-button:active
+{
+  cursor: wait;
+  box-shadow: none;
+  transform: translateY(4px);
+
+  border-color: #707070;
+  background-color: #adadad;
+}
+
+.activate-button:disabled
+{
+  cursor: wait;
+  box-shadow: none;
+  transform: translateY(4px);
+
+  border-color: #707070;
+  background-color: #adadad;
+}
+
+.activate-button:disabled:hover
+{
+  cursor: wait;
+  background-color: #adadad;
+}
+
+.activate-button:hover:not(:active)
+{
+  background-color: #7dce54;
+}
+
+.activate-button:hover:active
+{
+  cursor: wait;
 }

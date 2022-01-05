@@ -169,28 +169,6 @@ class Dice extends React.Component {
     window.addEventListener('resize', this.handleResize);
   }
 
-  // dieInnerHtml = (stateDieColor) => {
-  //   var dieColor = dieColorOptions[stateDieColor];
-  //   if (dieColorOptions[dieColor] === 'mix') {
-  //     dieColor = (Math.random() > 0.5) ? 'wb' : 'bw';
-  //   }
-
-  //   // var randomDieSide = possibleSides[randomIntFromInterval(0, (possibleSides - 1))];
-  //   var randomDieSide = possibleSides[randomIntFromInterval(0, (possibleSides.length - 1))];
-  //   // console.log("randomDieSide: " + randomDieSide);
-
-  //   return `
-  //     <div class='side ${randomDieSide} ${dieColor}'>
-  //       <div class='dot dot-1'></div>
-  //       <div class='dot dot-2'></div>
-  //       <div class='dot dot-3'></div>
-  //       <div class='dot dot-4'></div>
-  //       <div class='dot dot-5'></div>
-  //       <div class='dot dot-6'></div>
-  //     </div>
-  //   `;
-  // }
-
   render() {
     const { windowWidth, windowHeight } = this.state;
 
@@ -199,18 +177,10 @@ class Dice extends React.Component {
 
     const dieArea = diceSize + (diceMargin * 2);
 
-    // const horizontalFits = (windowWidth % dieArea);
-    // const verticalFits = (windowHeight % dieArea);
-
     const horizontalFits = Math.floor(windowWidth / dieArea);
     const verticalFits = Math.floor(windowHeight / dieArea);
 
     const horizontalAlignPadding = (windowWidth % dieArea) / 2;
-
-    // console.log('dieArea: ' + dieArea);
-    // console.log('horizontalFits: ' + horizontalFits);
-    // console.log('verticalFits: ' + verticalFits);
-    // console.log('horizontalAlignPadding: ' + horizontalAlignPadding);
 
     // 2D
     var dice = '';

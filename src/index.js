@@ -32,9 +32,10 @@ render(
         element={<RubberBandBalls />}
       />
       <Route
-        path='d'
+        path='dice'
         element={<Dice />}
       />
+      <Route path='*' element={<Home />} />
     </Routes>
   </BrowserRouter>,
   rootElement

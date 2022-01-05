@@ -52,12 +52,14 @@ button
   padding: 10px 5%;
 	border-radius: 32px;
 	cursor: pointer;
+
 	color: #fff;
-	font-size: 1em;
-  line-height: 34px;
-	font-weight: bold;
-	text-decoration: none;
+
+  font-weight: bold;
+	font-size: 1.1em;
   letter-spacing: 2px;
+  line-height: 34px;
+	text-decoration: none;
 }
 
 .home-button

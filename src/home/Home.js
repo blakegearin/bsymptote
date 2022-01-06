@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Background from './Background';
 import AppLogo from './logo.svg';
 import RubberBandBall from './rubber-band-ball.svg';
+import Die from './die.svg';
 
 import './Home.css';
 
@@ -38,8 +39,20 @@ export default function Home() {
         >
           <img
           id='rubber-band-ball-icon'
+          className='icon'
           src={RubberBandBall}
           alt='rubber band ball icon'
+        />
+        </Link>
+        <Link
+          id='dice-link'
+          to='/dice'
+        >
+          <img
+          id='rolling-die-icon'
+          className='icon'
+          src={Die}
+          alt='rolling die icon'
         />
         </Link>
       </div>

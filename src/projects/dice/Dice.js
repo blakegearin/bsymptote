@@ -141,7 +141,6 @@ class Dice extends React.Component {
         windowHeight: (window.innerHeight - 120),
       }
     );
-    // document.getElementById('roll-button').disabled = false;
   };
 
   componentDidMount() {
@@ -172,7 +171,7 @@ class Dice extends React.Component {
   render() {
     const { windowWidth, windowHeight } = this.state;
 
-    const diceSize = 15;
+    const diceSize = 10;
     const diceMargin = 1;
 
     const dieArea = diceSize + (diceMargin * 2);
@@ -192,43 +191,6 @@ class Dice extends React.Component {
         <div class='dot dot-4'></div>
         <div class='dot dot-5'></div>
         <div class='dot dot-6'></div>
-      </div>
-    `;
-
-    // d3 = 3D
-    const dieInnerHtml3d = `
-      <div class='side one d3'>
-        <div class='dot one-1'></div>
-      </div>
-      <div class='side two d3'>
-        <div class='dot two-1'></div>
-        <div class='dot two-2'></div>
-      </div>
-      <div class='side three d3'>
-        <div class='dot three-1'></div>
-        <div class='dot three-2'></div>
-        <div class='dot three-3'></div>
-      </div>
-      <div class='side four d3'>
-        <div class='dot four-1'></div>
-        <div class='dot four-2'></div>
-        <div class='dot four-3'></div>
-        <div class='dot four-4'></div>
-      </div>
-      <div class='side five d3'>
-        <div class='dot five-1'></div>
-        <div class='dot five-2'></div>
-        <div class='dot five-3'></div>
-        <div class='dot five-4'></div>
-        <div class='dot five-5'></div>
-      </div>
-      <div class='side six d3'>
-        <div class='dot six-1'></div>
-        <div class='dot six-2'></div>
-        <div class='dot six-3'></div>
-        <div class='dot six-4'></div>
-        <div class='dot six-5'></div>
-        <div class='dot six-6'></div>
       </div>
     `;
 

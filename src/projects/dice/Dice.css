@@ -1,6 +1,6 @@
 :root
 {
-  --dice-size: 15px;
+  --dice-size: 10px;
   --translateZ: calc(var(--dice-size) / 2);
   --dice-transition-duration: 2s;
 }
@@ -10,12 +10,6 @@
   position: absolute;
   width: var(--dice-size);
   height: var(--dice-size);
-}
-
-.dice.d3
-{
-  transform-style: preserve-3d;
-  transition: transform 1s;
 }
 
 .dot
@@ -28,7 +22,7 @@
     calc(var(--dice-size) / 25)
     calc(var(--dice-size) / 25)
     calc(var(--dice-size) / -10);
-  border-radius: calc(var(--dice-size) / 5);
+  border-radius: 50%;
   background-color: black;
 }
 
@@ -48,7 +42,6 @@
   border-radius: calc(var(--dice-size) / 25);
   width: var(--dice-size);
   height: var(--dice-size);
-  /* border: 1px solid #e5e5e5; */
   text-align: center;
   line-height: 4em;
 }
@@ -61,75 +54,6 @@
 .side.bw
 {
   background-color: black;
-}
-
-.side.d3:nth-child(1)
-{
-  transform: translateZ(var(--translateZ));
-}
-
-.side.d3:nth-child(6)
-{
-  transform: rotateY(90deg) translateZ(var(--translateZ));
-}
-
-.side.d3:nth-child(3)
-{
-  transform: rotateY(-90deg) translateZ(var(--translateZ));
-}
-
-.side.d3:nth-child(4)
-{
-  transform: rotateX(90deg) translateZ(var(--translateZ));
-}
-
-.side.d3:nth-child(5)
-{
-  transform: rotateX(-90deg) translateZ(var(--translateZ));
-}
-
-.side.d3:nth-child(2)
-{
-  transform: rotateY(-180deg) translateZ(var(--translateZ));
-}
-
-.show-1.d3
-{
-  transition-duration: var(--dice-transition-duration);
-  transform: rotateX(720deg) rotateZ(-720deg);
-}
-
-.show-2.d3
-{
-  transition-duration: var(--dice-transition-duration);
-  transform: rotateX(-900deg) rotateZ(1080deg);
-  /* transform: rotateX(-900deg) rotateZ(calc(randomRotation() + 1080deg)); */
-}
-
-.show-3.d3
-{
-  transition-duration: var(--dice-transition-duration);
-  transform: rotateY(810deg) rotateZ(720deg);
-  /* transform: rotateY(810deg) rotateZ(720deg) rotateX(randomRotation()); */
-}
-
-.show-4.d3
-{
-  transition-duration: var(--dice-transition-duration);
-  transform: rotateX(-810deg) rotateZ(-1080deg);
-}
-
-.show-5.d3
-{
-  transition-duration: var(--dice-transition-duration);
-  transform: rotateX(450deg) rotateZ(-720deg);
-}
-
-.show-6.d3
-{
-  transition-duration: var(--dice-transition-duration);
-  transform: rotateY(-450deg) rotateZ(-1440deg);
-  /* transform: rotateY(-450deg) rotateZ(-1440deg) rotateX(randomRotation()); */
 }
 
 .one .dot:not(.dot-1)
@@ -161,12 +85,7 @@
 .three .dot-1,
 .four .dot-1,
 .five .dot-1,
-.six .dot-1,
-.two-1,
-.three-1,
-.four-1,
-.five-1,
-.six-1
+.six .dot-1
 {
   top: 20%;
   left: 20%;
@@ -176,10 +95,7 @@
 .three.flip .dot-3,
 .four .dot-3,
 .five .dot-3,
-.six .dot-4,
-.four-3,
-.five-3,
-.six-4
+.six .dot-4
 {
   top: 20%;
   left: 80%;
@@ -187,10 +103,7 @@
 
 .one .dot-1,
 .three .dot-2,
-.five .dot-5,
-.one-1,
-.three-2,
-.five-5
+.five .dot-5
 {
   top: 50%;
   left: 50%;
@@ -200,10 +113,7 @@
 .three.flip .dot-1,
 .four .dot-2,
 .five .dot-2,
-.six .dot-3,
-.four-2,
-.five-2,
-.six-3
+.six .dot-3
 {
   top: 80%;
   left: 20%;
@@ -213,12 +123,7 @@
 .three .dot-3,
 .four .dot-4,
 .five .dot-4,
-.six .dot-6,
-.two-2,
-.three-3,
-.four-4,
-.five-4,
-.six-6
+.six .dot-6
 {
   top: 80%;
   left: 80%;
@@ -236,15 +141,13 @@
   left: 50%;
 }
 
-.six .dot-2,
-.six-2
+.six .dot-2
 {
   top: 50%;
   left: 20%;
 }
 
-.six .dot-5,
-.six-5
+.six .dot-5
 {
   top: 50%;
   left: 80%;

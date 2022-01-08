@@ -4,9 +4,8 @@ import Paper, { Color, Group, Path, Point, PointText, Rectangle } from 'paper';
 
 import Button from '../Button';
 import SeedRand from '../SeedRand'
-import './Space.css';
 
-export default function RubberBandBalls() {
+export default function Space() {
   const params = useParams();
   const location = useLocation();
   const navigate = useNavigate();
@@ -64,7 +63,7 @@ export default function RubberBandBalls() {
     [...word].forEach((char, index) => {
       const fontSize = randomIntFromInterval(10, 500);
       const point = new Point(
-        (widthFifth / 2) + (widthFifth * index), 
+        (widthFifth / 2) + (widthFifth * index),
         randomIntFromInterval(fontSize, (windowHeight - fontSize))
       );
       const fontFamily = randomFromArray([
@@ -105,7 +104,7 @@ export default function RubberBandBalls() {
       ]);
       new PointText(
         {
-          point: point, 
+          point: point,
           content: char,
           fontFamily: `${fontFamily}, serif, sans-serif`,
           fontWeight: randomIntFromInterval(100, 900),

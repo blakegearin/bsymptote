@@ -5,6 +5,7 @@ import Background from './Background';
 import AppLogo from './logo.svg';
 import RubberBandBall from '../projects/rubber-band-balls/rubber-band-ball.svg';
 import Die from '../projects/dice/die.svg';
+import Space from '../projects/space/space.svg';
 
 import './Home.css';
 
@@ -53,6 +54,17 @@ export default function Home() {
           className='icon'
           src={Die}
           alt='rolling die icon'
+        />
+        </Link>
+        <Link
+          id='space-link'
+          to='/space'
+        >
+          <img
+          id='space-icon'
+          className='icon'
+          src={Space}
+          alt='space icon'
         />
         </Link>
       </div>

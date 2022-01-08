@@ -277,7 +277,7 @@ class Dice extends React.Component {
   }
 }
 
-export default function(props) {
+export default function DiceFunction(props) {
   const navigate = useNavigate();
 
   return <Dice {...props} navigate={navigate} />;

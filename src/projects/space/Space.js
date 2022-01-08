@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useParams, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
-import Paper, { Color, Group, Path, Point, PointText, Rectangle } from 'paper';
+import Paper, { Color, Path, Point, PointText } from 'paper';
 
 import Button from '../Button';
 import SeedRand from '../SeedRand'
@@ -156,7 +156,7 @@ export default function Space() {
     document.getElementById('random-button').style.display = '';
     document.getElementsByClassName('home-button')[0].style.display = '';
     toggleSpinner(false);
-  }, [params, location, navigate, searchParams, setSearchParams]);
+  });
 
 
   var seed = searchParams.get('seed');

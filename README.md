@@ -1,3 +1,3 @@
 # bsymptote
 
-Generative art created with Paper.js and React.
+Generative art created with React and Paper.js

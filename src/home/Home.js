@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 import Background from './Background';
 import AppLogo from './logo.svg';
-import RubberBandBall from './rubber-band-ball.svg';
-import Die from './die.svg';
+import RubberBandBall from '../projects/rubber-band-balls/rubber-band-ball.svg';
+import Die from '../projects/dice/die.svg';
 
 import './Home.css';
 

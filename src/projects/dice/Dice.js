@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import Button from '../../Button';
+import Button from '../Button';
 
 import './Dice.css';
 
@@ -218,7 +218,7 @@ class Dice extends React.Component {
     document.body.style.backgroundColor = 'grey';
 
     return (
-      <div id={'dice'} className='center'>
+      <div id='dice' className='center'>
         <div
           style={{ height: windowHeight, width: windowWidth }}
           dangerouslySetInnerHTML={{ __html: dice }}

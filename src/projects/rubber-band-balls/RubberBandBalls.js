@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { useParams, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import Paper, { Color, Path, Point, Rectangle} from 'paper';
 
-import Button from '../../Button';
+import Button from '../Button';
+import SeedRand from '../SeedRand'
 import './RubberBandBalls.css';
 
 export default function RubberBandBalls() {
@@ -22,18 +23,8 @@ export default function RubberBandBalls() {
     canvas.width = windowWidth;
     canvas.height = windowHeight;
 
-    // console.log('windowWidth: ' + windowWidth);
-    // console.log('windowHeight: ' + windowHeight);
-
     // Create an empty project and a view for the canvas
     Paper.setup(canvas);
-
-    Math.seed = function (s) {
-      return function () {
-        s = Math.sin(s) * 10000;
-        return s - Math.floor(s);
-      };
-    };
 
     function findMinimum(value) {
       if (toString.call(value) !== '[object Array]') return false;
@@ -259,7 +250,7 @@ export default function RubberBandBalls() {
     }
 
     // console.log('seed: ' + seed);
-    var rand = Math.seed(seed);
+    var rand = SeedRand(seed);
 
     var ballSize, ballMargin, ballSquare;
     var [horizontalFits, verticalFits] = [0, 0];

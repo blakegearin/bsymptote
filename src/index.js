@@ -10,6 +10,7 @@ import reportWebVitals from './reportWebVitals';
 import Home from './home/Home';
 import RubberBandBalls from './projects/rubber-band-balls/RubberBandBalls';
 import Dice from './projects/dice/Dice';
+import Space from './projects/space/Space';
 
 import './index.css';
 
@@ -34,6 +35,10 @@ render(
       <Route
         path='dice'
         element={<Dice />}
+      />
+      <Route
+        path='space'
+        element={<Space />}
       />
       <Route path='*' element={<Home />} />
     </Routes>

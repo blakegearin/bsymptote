@@ -6,6 +6,7 @@ html, body
 {
   margin: auto;
   text-align: center;
+  background-color: #ddd;
 }
 
 main
@@ -42,22 +43,56 @@ main
   margin: 0px;
 }
 
-#copy-me
+#descriptive-text
 {
-  position: absolute;
-  top: 9%;
-  left: 19.5%;
-  width: 80px;
+  position: fixed;
+  top: 9.5%;
+  width: 120px;
   text-shadow: 1px 1px #fff;
   text-align: center;
+  left: 4.5%;
 }
-
 
 #page-title img
 {
   height: 60px;
   width: 60px;
   margin-left: 20px;
+}
+
+#definition
+{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+
+  width: 320px;
+  text-align: left;
+  padding: 25px;
+  background-color: #ffffff;
+}
+
+#definition .word
+{
+  display: inline-block;
+  margin-bottom: 0px;
+}
+
+#definition .noun
+{
+  display: inline-block;
+  font-style: italic;
+  padding-left: 17px;
+}
+
+#definition .definitions
+{
+  padding-left: 15px;
 }
 
 .hide

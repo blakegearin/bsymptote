@@ -6,7 +6,6 @@ import {CopyToClipboard} from 'react-copy-to-clipboard';
 import { SketchPicker } from 'react-color'
 import Select from 'react-select'
 
-import SeedRand from '../SeedRand'
 import Button from '../Button';
 import Copy from './copy.svg';
 import Check from './check.svg';
@@ -46,7 +45,7 @@ function totalHexColors() {
 
 function componentToHex(c) {
   let hex = c.toString(16);
-  return hex.length == 1 ? '0' + hex : hex;
+  return hex.length === 1 ? '0' + hex : hex;
 }
 
 function rgbToHex(r, g, b) {
@@ -66,67 +65,21 @@ class Antipalette extends React.Component {
   constructor(props) {
     super(props);
 
-    var rand = null;
-
     let hexColor = props.searchParams.get('color') || null;
     let type = props.searchParams.get('type') || null;
+
     let r, g, b;
-    if (hexColor == null || type == null) {
-      var seed = props.searchParams.get('seed');
-
-      if (seed === null || seed === 0 || seed === '') {
-        seed = randomIntFromInterval(1, 10000, Math.random());
-      }
-
-      rand = SeedRand(seed);
-
-      // let newSearchParams = {};
-
-      if (type == null || !typesOfColorBlindness.includes(type)) {
-        type = randomFromArray(typesOfColorBlindness);
-        // newSearchParams['type'] = type;
-        props.setSearchParams({ type: type });
-      }
-
-      if (hexColor == null) {
-        r = randomIntFromInterval(0, 255, rand());
-        g = randomIntFromInterval(0, 255, rand());
-        b = randomIntFromInterval(0, 255, rand());
-
-        // console.log(`r`);
-        // console.dir(r);
-
-        // console.log(`g`);
-        // console.dir(g);
-
-        // console.log(`b`);
-        // console.dir(b);
-
-        hexColor = rgbToHex(r, g, b);
-        // newSearchParams['color'] = hexColor;
-        props.setSearchParams({ color: hexColor });
-      }
-
-      // console.log(`newSearchParams`);
-      // console.dir(newSearchParams);
-
-      // props.setSearchParams(newSearchParams);
-      props.setSearchParams({ color: hexColor });
-    } else {
+    if (hexColor != null) {
       let rgb = hexToRgb(hexColor);
       r = rgb.r;
       g = rgb.g;
       b = rgb.g;
     }
 
-    console.log(`hexColor in constructor`);
-    console.dir(hexColor);
-
     this.state = {
       loading: false,
       windowWidth: window.innerWidth,
       windowHeight: (window.innerHeight - 120),
-      rand: rand,
       displayColorPicker: false,
       type: type,
       hexColor: hexColor,
@@ -136,7 +89,7 @@ class Antipalette extends React.Component {
         b: b,
         a: '1',
       },
-      antipalette: 42,
+      colorPresentOnLoad: (hexColor != null),
     };
   }
 
@@ -163,16 +116,17 @@ class Antipalette extends React.Component {
     console.dir(targetColor);
 
     let type = this.state.type;
-    // let type = 'protanopia';
     console.log(`type`);
     console.dir(type);
+
+    if (targetColor == null || type == null) return null;
 
     let limit = null;
 
     let colorsFound = [];
 
-    console.log('done early')
-    return true;
+    // console.log('done early')
+    // return true;
 
     for (let i = 0; i < totalHexColors(); ++i) {
       if (limit != null && limit === 0) break;
@@ -198,6 +152,20 @@ class Antipalette extends React.Component {
 
         if (limit != null) limit -= 1;
       }
+    }
+
+    if (colorsFound.length === 0) {
+      document.documentElement.style.setProperty('--palette-amount', 1);
+
+      let element = document.createElement('div');
+      element.classList = 'palette-color';
+      element.style = 'background-color: #ffffff;';
+
+      let span = document.createElement('span');
+      span.innerText = 'No colors found. This may sound bad but it is good.';
+      element.appendChild(span);
+
+      document.getElementById('antipalette-content').appendChild(element);
     }
 
     document.querySelectorAll('.palette-color').forEach((element) => {
@@ -255,37 +223,6 @@ class Antipalette extends React.Component {
 
   handleClose = () => {
     this.setState({ displayColorPicker: false });
-
-    // console.log('setting loading to true');
-    // showLoader();
-    // this.setState({ loading: true });
-    // toggleSpinner(true);
-    // toggleSpinner(true).then(() => {
-    // this.setState({ loading: true }, () => {
-      // generativeArt(this.state.hexColor);
-
-      // console.log('setting loading to false');
-      // this.setState({ loading: false });
-
-    // });
-
-    // console.log('exiting')
-
-    // new Promise((resolve, reject) => {
-    //   toggleSpinner(true);
-    //   generativeArt(this.state.hexColor).then(() => {
-    //     toggleSpinner(false);
-    //   });
-    // });
-
-
-
-
-    // toggleSpinner(true);
-    // const newUrl = `/antipalette?color=${encodeURIComponent(this.state.hexColor)}`;
-    // console.log(`newUrl`);
-    // console.dir(newUrl);
-    // this.props.navigate(newUrl);
   };
 
   handleColorChange = (color) => {
@@ -298,17 +235,19 @@ class Antipalette extends React.Component {
   };
 
   handleTypeChange = (selectedOption) => {
-    this.setState({ type: selectedOption }, () =>
-      console.log(`Option selected:`, this.state.type)
-    );
+    this.setState({ type: selectedOption.value });
   };
 
-  onSubmit = () => {
+  onSubmit = (event) => {
+    event.preventDefault();
     toggleSpinner(true);
-    const newUrl = `/antipalette?color=${encodeURIComponent(this.state.hexColor)}`;
+
+    const newUrl =
+      `/antipalette?color=${encodeURIComponent(this.state.hexColor)}&type=${this.state.type}`;
     console.log(`newUrl`);
     console.dir(newUrl);
-    this.props.navigate(newUrl);
+
+    window.location.replace(newUrl);
   }
 
   componentDidMount() {
@@ -322,7 +261,13 @@ class Antipalette extends React.Component {
   }
 
   render() {
-    const { type } = this.state;
+    const { type, colorPresentOnLoad } = this.state;
+    const isAntipalettePopulated = this.state.antipalette && this.state.antipalette.length !== 0;
+
+    const descriptiveText = {
+      value: (colorPresentOnLoad && isAntipalettePopulated) ? 'copy me' : 'generate me',
+      class: (colorPresentOnLoad && isAntipalettePopulated) ? 'copy-me' : 'generate-me',
+    };
 
     const colorStyles = reactCSS({
       'default': {
@@ -352,32 +297,66 @@ class Antipalette extends React.Component {
         }
         <div
           id='page-title'
-          onMouseEnter={this.showCopyIcon}
-          onMouseLeave={() => document.getElementById('copy-icon').classList.add('hide')}
+          onMouseEnter={
+            (colorPresentOnLoad && isAntipalettePopulated) ? this.showCopyIcon : null
+          }
+          onMouseLeave={() => {
+            if (colorPresentOnLoad && isAntipalettePopulated) {
+              document.getElementById('copy-icon').classList.add('hide');
+            }
+          }}
         >
           <h1>Antipalette</h1>
-          <CopyToClipboard
-            id='copy-to-clipboard'
-            text={this.state.antipalette}
-            onCopy={this.copiedToClipboard}
-          >
-            <div>
-              <img
-                id='copy-icon'
-                class='hide'
-                src={Copy}
-                alt='copy to clipboard icon'
-              />
-              <img
-                id='check-mark-icon'
-                src={Check}
-                class='hide'
-                alt='check mark icon'
-              />
+          {
+            colorPresentOnLoad ?
+            <CopyToClipboard
+              id='copy-to-clipboard'
+              text={this.state.antipalette}
+              onCopy={this.copiedToClipboard}
+            >
+              <div>
+                <img
+                  id='copy-icon'
+                  className='hide'
+                  src={Copy}
+                  alt='copy to clipboard icon'
+                />
+                <img
+                  id='check-mark-icon'
+                  src={Check}
+                  className='hide'
+                  alt='check mark icon'
+                />
+              </div>
+            </CopyToClipboard> :
+            <div id="definition">
+              <h2 className="word">antipalette</h2>
+              <span className="noun">noun</span>
+              <p>an·​ti·pal·​ette</p>
+              <p>\ ˈan-ˌtīpa-lət, ˈan-tēpa-lət \</p>
+              <div className="definitions">
+                <p>
+                  1. a set of colors virtually indistinguishable when viewed with a specific color deficiency
+                </p>
+                <p>
+                  2. yes I made this word up, all words are made up
+                </p>
+                <p>
+                  3. choose a color deficiency & target color to generate an antipalette of all the colors that look the same as the target color (according to <a href="https://www.npmjs.com/package/color-blind" target="_blank" rel="noopener noreferrer">this</a>)
+                </p>
+                <p>
+                  4. when I say "all the colors" I do mean all 16,777,216 RGB color combinations (256<sup>3</sup>), so please be patient
+                </p>
+              </div>
             </div>
-          </CopyToClipboard>
+          }
         </div>
-        <p id='copy-me'>(copy me)</p>
+        <p
+          id='descriptive-text'
+          className={descriptiveText.class}
+        >
+          ({descriptiveText.value})
+        </p>
         <div id='antipalette-content'></div>
         <Button
           title={'Home'}
@@ -408,13 +387,13 @@ class Antipalette extends React.Component {
             </div>
           </div>
           <Button
-              id='roll-button'
-              type='submit'
-              title='Generate'
-              className='no-select activate-button'
-              disabled={this.state.loading}
-              onClick={this.onSubmit}
-            />
+            id='roll-button'
+            type='submit'
+            title='Generate'
+            className='no-select activate-button'
+            disabled={this.state.loading}
+            onClick={this.onSubmit}
+          />
         </form>
       </div>
     );

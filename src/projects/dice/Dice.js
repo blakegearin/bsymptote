@@ -51,16 +51,13 @@ function changeColor(oldColor, newColor) {
   [...document.querySelectorAll(searchColor)].forEach(
     (element) => {
       if (newColor === 'mix') {
-        console.log(1);
         element.classList.replace(oldColor, ((Math.random() > 0.5) ? 'wb' : 'bw'));
       } else if (oldColor === 'mix') {
-        console.log(2);
         if (element.classList.contains(newColor)) return;
 
         var currentOldColor = (newColor === 'wb') ? 'bw' : 'wb';
         element.classList.replace(currentOldColor, newColor);
       } else {
-        console.log(3);
         element.classList.replace(oldColor, newColor);
       }
     }
@@ -83,7 +80,6 @@ function rollDie(die, dieColor, d2 = true) {
     ];
     if (dieColor === 'mix') dieColor = (Math.random() > 0.5) ? 'wb' : 'bw';
     var newValue = `${possibleSides[randomIntFromInterval(0, (possibleSides.length - 1))]} ${dieColor}`;
-    // console.log(`newValue: ${newValue}`);
     die.className = newValue;
   } else {
     const newValue = Math.floor((Math.random() * 6) + 1);
@@ -130,7 +126,7 @@ class Dice extends React.Component {
       dieColor: 'white',
       loading: false,
       windowWidth: window.innerWidth,
-      windowHeight: (window.innerHeight- 120),
+      windowHeight: (window.innerHeight - 120),
     };
   }
 
@@ -237,7 +233,6 @@ class Dice extends React.Component {
           title='<div>Die Color</div>'
           className={`no-select ${dieColorOptions[this.state.dieColor]}`}
           onClick={() => {
-            // console.log('old dieColor: ' + this.state.dieColor);
             const oldColor = dieColorOptions[this.state.dieColor];
             const currentPosition = Object.keys(dieColorOptions).indexOf(this.state.dieColor);
             var newPosition = currentPosition + 1;
@@ -246,7 +241,6 @@ class Dice extends React.Component {
 
             const newColor = Object.keys(dieColorOptions)[newPosition];
             this.setState({ dieColor: newColor });
-            console.log('new dieColor: ' + this.state.dieColor);
             changeColor(oldColor, dieColorOptions[newColor]);
           }}
         />

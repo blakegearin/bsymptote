@@ -39,33 +39,33 @@ export default function Home() {
           to='/rubber-band-balls'
         >
           <img
-          id='rubber-band-ball-icon'
-          className='icon'
-          src={RubberBandBall}
-          alt='rubber band ball icon'
-        />
+            id='rubber-band-ball-icon'
+            className='icon'
+            src={RubberBandBall}
+            alt='rubber band ball icon'
+          />
         </Link>
         <Link
           id='dice-link'
           to='/dice'
         >
           <img
-          id='rolling-die-icon'
-          className='icon'
-          src={Die}
-          alt='rolling die icon'
-        />
+            id='rolling-die-icon'
+            className='icon'
+            src={Die}
+            alt='rolling die icon'
+          />
         </Link>
         <Link
           id='space-link'
           to='/space'
         >
           <img
-          id='space-icon'
-          className='icon'
-          src={Space}
-          alt='space icon'
-        />
+            id='space-icon'
+            className='icon'
+            src={Space}
+            alt='space icon'
+          />
         </Link>
       </div>
     </div>

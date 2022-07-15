@@ -11,6 +11,7 @@ import Home from './home/Home';
 import RubberBandBalls from './projects/rubber-band-balls/RubberBandBalls';
 import Dice from './projects/dice/Dice';
 import Space from './projects/space/Space';
+import Antipalette from './projects/antipalette/Antipalette';
 
 import './index.css';
 
@@ -39,6 +40,10 @@ render(
       <Route
         path='space'
         element={<Space />}
+      />
+      <Route
+        path='antipalette'
+        element={<Antipalette />}
       />
       <Route path='*' element={<Home />} />
     </Routes>

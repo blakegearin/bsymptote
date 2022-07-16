@@ -6,6 +6,7 @@ import AppLogo from './logo.svg';
 import RubberBandBall from '../projects/rubber-band-balls/rubber-band-ball.svg';
 import Die from '../projects/dice/die.svg';
 import Space from '../projects/space/space.svg';
+import Antipalette from '../projects/antipalette/antipalette.svg';
 
 import './Home.css';
 
@@ -65,6 +66,17 @@ export default function Home() {
             className='icon'
             src={Space}
             alt='space icon'
+          />
+        </Link>
+        <Link
+          id='antipalette-link'
+          to='/antipalette'
+        >
+          <img
+            id='antipalette-icon'
+            className='icon'
+            src={Antipalette}
+            alt='antipalette icon'
           />
         </Link>
       </div>

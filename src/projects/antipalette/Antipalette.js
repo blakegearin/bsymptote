@@ -2,7 +2,7 @@ import React from 'react';
 import reactCSS from 'reactcss'
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
-import {CopyToClipboard} from 'react-copy-to-clipboard';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { SketchPicker } from 'react-color'
 import Select from 'react-select'
 
@@ -26,7 +26,6 @@ const typesOfColorBlindness = [
 ];
 
 function toggleSpinner(loading) {
-  console.log('toggling spinner')
   document.getElementById('spinnerBackground').style.display = loading ? '' : 'none';
 }
 
@@ -34,9 +33,13 @@ function randomIntFromInterval(min, max, method = Math.random()) {
   return Math.floor(method * (max - min + 1) + min);
 }
 
-function randomFromArray(array) {
-  let randomInteger = randomIntFromInterval(0, (Object.keys(array).length - 1));
-  return array[randomInteger];
+// Credit: https://stackoverflow.com/a/41491220/5988852
+function pickTextColorBasedOnBgColorSimple(bgColor) {
+  var color = (bgColor.charAt(0) === '#') ? bgColor.substring(1, 7) : bgColor;
+  var r = parseInt(color.substring(0, 2), 16); // hexToR
+  var g = parseInt(color.substring(2, 4), 16); // hexToG
+  var b = parseInt(color.substring(4, 6), 16); // hexToB
+  return (((r * 0.299) + (g * 0.587) + (b * 0.114)) > 186) ? 'black' : 'white';
 }
 
 function totalHexColors() {
@@ -48,10 +51,6 @@ function componentToHex(c) {
   return hex.length === 1 ? '0' + hex : hex;
 }
 
-function rgbToHex(r, g, b) {
-  return '#' + componentToHex(r) + componentToHex(g) + componentToHex(b);
-}
-
 function hexToRgb(hex) {
   let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   return result ? {
@@ -59,6 +58,17 @@ function hexToRgb(hex) {
     g: parseInt(result[2], 16),
     b: parseInt(result[3], 16)
   } : null;
+}
+
+function setContentSize(antipalette = null) {
+  if (antipalette == null) antipalette = document.getElementById('antipalette-content');
+
+  // 120px is the offset of the Random button
+  const windowHeight = `${window.innerHeight - 120}px`;
+  const windowWidth = `${window.innerWidth}px`;
+
+  antipalette.style.width = windowWidth;
+  antipalette.style.height = windowHeight;
 }
 
 class Antipalette extends React.Component {
@@ -94,44 +104,26 @@ class Antipalette extends React.Component {
   }
 
   generativeArt = () => {
-    console.log('LOADING');
-
-    // Get a reference to the div
-    let antipalette = document.getElementById('antipalette-content')
+    let antipalette = document.getElementById('antipalette-content');
     if (antipalette == null) {
       console.error('antipalette-content wasn\'t found');
       return;
     }
     antipalette.innerHTML = '';
 
-    // 120px is the offset of the Random button
-    const windowHeight = `${window.innerHeight - 120}px`;
-    const windowWidth = `${window.innerWidth}px`;
-
-    antipalette.style.width = windowWidth;
-    antipalette.style.height = windowHeight;
+    setContentSize(antipalette);
 
     let targetColor = this.state.hexColor;
-    console.log(`targetColor`);
-    console.dir(targetColor);
-
     let type = this.state.type;
-    console.log(`type`);
-    console.dir(type);
-
     if (targetColor == null || type == null) return null;
 
     let limit = null;
-
     let colorsFound = [];
-
-    // console.log('done early')
-    // return true;
 
     for (let i = 0; i < totalHexColors(); ++i) {
       if (limit != null && limit === 0) break;
 
-      let color = '#' + ('00000' + i.toString(16)).slice(-6);
+      const color = '#' + i.toString(16).padStart(6, '0');
 
       if (targetColor === blinder[type](color)) {
         colorsFound.push(color);
@@ -141,12 +133,9 @@ class Antipalette extends React.Component {
         element.classList = 'palette-color';
         element.style = `
           background-color: ${color};
-          color: ${(totalHexColors()/2) > i ? 'white' : 'black'};
+          color: ${pickTextColorBasedOnBgColorSimple(color)};
         `;
-
-        let span = document.createElement('span');
-        span.innerText = color;
-        element.appendChild(span);
+        element.innerText = color;
 
         document.getElementById('antipalette-content').appendChild(element);
 
@@ -172,9 +161,6 @@ class Antipalette extends React.Component {
       element.style.cssText += `height: calc(${this.state.windowHeight}px / var(--palette-amount));`;
     });
 
-    console.log('DONE');
-    console.log(`colorsFound`);
-    console.dir(colorsFound);
     this.setState({ antipalette: colorsFound });
   }
 
@@ -209,12 +195,7 @@ class Antipalette extends React.Component {
   }
 
   handleResize = () => {
-    this.setState(
-      {
-        windowWidth: window.innerWidth,
-        windowHeight: (window.innerHeight - 120),
-      }
-    );
+    setContentSize();
   };
 
   handleClick = () => {
@@ -244,8 +225,6 @@ class Antipalette extends React.Component {
 
     const newUrl =
       `/antipalette?color=${encodeURIComponent(this.state.hexColor)}&type=${this.state.type}`;
-    console.log(`newUrl`);
-    console.dir(newUrl);
 
     window.location.replace(newUrl);
   }
@@ -253,6 +232,7 @@ class Antipalette extends React.Component {
   componentDidMount() {
     window.addEventListener('resize', this.handleResize);
     this.generativeArt();
+
     toggleSpinner(false);
   }
 
@@ -345,7 +325,7 @@ class Antipalette extends React.Component {
                   3. choose a color deficiency & target color to generate an antipalette of all the colors that look the same as the target color (according to <a href="https://www.npmjs.com/package/color-blind" target="_blank" rel="noopener noreferrer">this</a>)
                 </p>
                 <p>
-                  4. when I say "all the colors" I do mean all 16,777,216 RGB color combinations (256<sup>3</sup>), so please be patient
+                  4. when I say "all the colors" I do mean all 16,777,216 RGB color combinations, so please be patient
                 </p>
               </div>
             </div>

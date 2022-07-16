@@ -49,8 +49,9 @@ main
   top: 9.5%;
   width: 120px;
   text-shadow: 1px 1px #fff;
-  text-align: center;
-  left: 4.5%;
+  text-align: left;
+  left: 5%;
+  font-weight: bold;
 }
 
 #page-title img
@@ -152,18 +153,15 @@ main
   grid-template-columns: auto auto;
 }
 
-.palette-color
+#antipalette-content
 {
-  width: 100%;
-  display: table;
+  display: flex;
+  flex-flow: column wrap;
 }
 
-.palette-color span
+.palette-color
 {
-  display: table-cell;
-  vertical-align: middle;
-  text-align: center;
-  line-height: 40px;
+  display: inline-table;
 }
 
 #color-input > *

@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.a9d8f1b9.css",
-    "main.js": "/static/js/main.3ece7a89.js",
+    "main.css": "/static/css/main.71dbd1b0.css",
+    "main.js": "/static/js/main.e47adf6f.js",
     "static/js/988.4a5b14b8.chunk.js": "/static/js/988.4a5b14b8.chunk.js",
     "static/media/rubber-band-ball.svg": "/static/media/rubber-band-ball.514f88f54dd6ef4e43edea3fc6417670.svg",
     "static/media/space.svg": "/static/media/space.baaa012f5deae7351719c8c680c4f9f2.svg",
@@ -11,12 +11,12 @@
     "static/media/die.svg": "/static/media/die.5cfee6b43168c55ea0cd4d45d629eead.svg",
     "static/media/copy.svg": "/static/media/copy.9f4efb2358d98822b49ac480c42a3fda.svg",
     "static/media/check.svg": "/static/media/check.cde45c513ef19f7750d31cf914db8458.svg",
-    "main.a9d8f1b9.css.map": "/static/css/main.a9d8f1b9.css.map",
-    "main.3ece7a89.js.map": "/static/js/main.3ece7a89.js.map",
+    "main.71dbd1b0.css.map": "/static/css/main.71dbd1b0.css.map",
+    "main.e47adf6f.js.map": "/static/js/main.e47adf6f.js.map",
     "988.4a5b14b8.chunk.js.map": "/static/js/988.4a5b14b8.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a9d8f1b9.css",
-    "static/js/main.3ece7a89.js"
+    "static/css/main.71dbd1b0.css",
+    "static/js/main.e47adf6f.js"
   ]
 }

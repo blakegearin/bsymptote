@@ -54,7 +54,7 @@ function hexToRgb(hex) {
 function setContentSize(antipalette = null) {
   if (antipalette == null) antipalette = document.getElementById('antipalette-content');
 
-  // 120px is the offset of the Random button
+  // 120px is the offset of the button toolbar
   const windowHeight = `${window.innerHeight - 120}px`;
   const windowWidth = `${window.innerWidth}px`;
 

@@ -22,7 +22,7 @@ export default function Home() {
   toggleSpinner();
 
   return (
-    <div>
+    <div id='home'>
       <canvas id='backgroundCanvas'></canvas>
       <div className='all-center'>
         <img
@@ -35,50 +35,52 @@ export default function Home() {
           <br></br>
           <span className='no-select'>xxxxxx</span>
         </h1>
-        <Link
-          id='rubber-band-balls-link'
-          to='/rubber-band-balls'
-        >
-          <img
-            id='rubber-band-ball-icon'
-            className='icon'
-            src={RubberBandBall}
-            alt='rubber band ball icon'
-          />
-        </Link>
-        <Link
-          id='dice-link'
-          to='/dice'
-        >
-          <img
-            id='rolling-die-icon'
-            className='icon'
-            src={Die}
-            alt='rolling die icon'
-          />
-        </Link>
-        <Link
-          id='space-link'
-          to='/space'
-        >
-          <img
-            id='space-icon'
-            className='icon'
-            src={Space}
-            alt='space icon'
-          />
-        </Link>
-        <Link
-          id='antipalette-link'
-          to='/antipalette'
-        >
-          <img
-            id='antipalette-icon'
-            className='icon'
-            src={Antipalette}
-            alt='antipalette icon'
-          />
-        </Link>
+        <div>
+          <Link
+            id='rubber-band-balls-link'
+            to='/rubber-band-balls'
+          >
+            <img
+              id='rubber-band-ball-icon'
+              className='icon'
+              src={RubberBandBall}
+              alt='rubber band ball icon'
+            />
+          </Link>
+          <Link
+            id='dice-link'
+            to='/dice'
+          >
+            <img
+              id='rolling-die-icon'
+              className='icon'
+              src={Die}
+              alt='rolling die icon'
+            />
+          </Link>
+          <Link
+            id='space-link'
+            to='/space'
+          >
+            <img
+              id='space-icon'
+              className='icon'
+              src={Space}
+              alt='space icon'
+            />
+          </Link>
+          <Link
+            id='antipalette-link'
+            to='/antipalette'
+          >
+            <img
+              id='antipalette-icon'
+              className='icon'
+              src={Antipalette}
+              alt='antipalette icon'
+            />
+          </Link>
+        </div>
       </div>
     </div>
   );

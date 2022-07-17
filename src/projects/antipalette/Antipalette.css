@@ -126,29 +126,6 @@ main
 
 #color-input
 {
-  /* border: 1px solid red; */
-
-  /* display: table-cell;
-  vertical-align: middle;
-  height: 50px;
-  margin: auto; */
-
-  /* height: 50px; */
-  /* background: grey; */
-  /* display: flex;
-  align-items: center;
-  margin: auto; */
-
-  /* position:absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: grey;
-  display: flex;
-  align-items: center;
-  justify-content:center */
-
   display: inline-grid;
   grid-template-columns: auto auto;
 }
@@ -159,14 +136,14 @@ main
   flex-flow: column wrap;
 }
 
+.buttons
+{
+  font-size: 1.5vw;
+}
+
 .palette-color
 {
   display: inline-table;
-}
-
-#color-input > *
-{
-  /* display: inline-block; */
 }
 
 #color-input
@@ -184,14 +161,14 @@ main
   margin-top: 32px;
 }
 
+#inputs-form
+{
+  display: flow-root;
+}
+
 #inputs > div
 {
   margin: 10px;
-}
-
-#select-color-deficiency
-{
-  /* width: 200px; */
 }
 
 #swatch
@@ -234,4 +211,24 @@ main
   right: 0px;
   bottom: 0px;
   left: 0px;
+}
+
+@media screen and (min-width:320px) and (max-device-width: 481px)
+{
+  .buttons
+  {
+    font-size: 2vw;
+  }
+
+  button
+  {
+    margin-top: 35px !important;
+    padding: 5px !important;
+    font-size: 3vw !important;
+  }
+
+  #inputs-form
+  {
+    display: flow-root;
+  }
 }

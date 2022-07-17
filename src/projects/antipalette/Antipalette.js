@@ -29,10 +29,6 @@ function toggleSpinner(loading) {
   document.getElementById('spinnerBackground').style.display = loading ? '' : 'none';
 }
 
-function randomIntFromInterval(min, max, method = Math.random()) {
-  return Math.floor(method * (max - min + 1) + min);
-}
-
 // Credit: https://stackoverflow.com/a/41491220/5988852
 function pickTextColorBasedOnBgColorSimple(bgColor) {
   var color = (bgColor.charAt(0) === '#') ? bgColor.substring(1, 7) : bgColor;
@@ -44,11 +40,6 @@ function pickTextColorBasedOnBgColorSimple(bgColor) {
 
 function totalHexColors() {
   return Math.pow(256, 3)
-}
-
-function componentToHex(c) {
-  let hex = c.toString(16);
-  return hex.length === 1 ? '0' + hex : hex;
 }
 
 function hexToRgb(hex) {
@@ -338,43 +329,45 @@ class Antipalette extends React.Component {
           ({descriptiveText.value})
         </p>
         <div id='antipalette-content'></div>
-        <Button
-          title={'Home'}
-          className='no-select home-button'
-          onClick={() => {
-            toggleSpinner(true);
-            this.props.navigate(`/`);
-          }}
-        />
-        <form>
-          <div id='inputs'>
-            <Select
-              id='select-color-deficiency'
-              placeholder='color deficiency'
-              options={selectOptions}
-              value={selectOptions.filter(o => o.value === type)[0]}
-              menuPlacement='top'
-              onChange={this.handleTypeChange}
-            />
-            <div id='color-input'>
-              <label htmlFor='swatch'>Color&nbsp;&nbsp;</label>
-              <div
-                id='swatch'
-                onClick={this.handleClick}
-              >
-                <div id='color' style={colorStyles.color}/>
+        <div className="buttons">
+          <Button
+            title={'Home'}
+            className='no-select home-button'
+            onClick={() => {
+              toggleSpinner(true);
+              this.props.navigate(`/`);
+            }}
+          />
+          <form id='inputs-form'>
+            <div id='inputs'>
+              <Select
+                id='select-color-deficiency'
+                placeholder='color deficiency'
+                options={selectOptions}
+                value={selectOptions.filter(o => o.value === type)[0]}
+                menuPlacement='top'
+                onChange={this.handleTypeChange}
+              />
+              <div id='color-input'>
+                <label htmlFor='swatch'>Color&nbsp;&nbsp;</label>
+                <div
+                  id='swatch'
+                  onClick={this.handleClick}
+                >
+                  <div id='color' style={colorStyles.color}/>
+                </div>
               </div>
             </div>
-          </div>
-          <Button
-            id='roll-button'
-            type='submit'
-            title='Generate'
-            className='no-select activate-button'
-            disabled={this.state.loading}
-            onClick={this.onSubmit}
-          />
-        </form>
+            <Button
+              id='roll-button'
+              type='submit'
+              title='Generate'
+              className='no-select activate-button'
+              disabled={this.state.loading}
+              onClick={this.onSubmit}
+            />
+          </form>
+        </div>
       </div>
     );
   }

@@ -1,6 +1,6 @@
 import { render } from 'react-dom';
 import {
-  BrowserRouter,
+  HashRouter,
   Routes,
   Route
 } from 'react-router-dom';
@@ -23,7 +23,7 @@ WebFont.load({
 
 const rootElement = document.getElementById('root');
 render(
-  <BrowserRouter>
+  <HashRouter>
     <Routes>
       <Route
         path='/'
@@ -47,7 +47,7 @@ render(
       />
       <Route path='*' element={<Home />} />
     </Routes>
-  </BrowserRouter>,
+  </HashRouter>,
   rootElement
 );
 

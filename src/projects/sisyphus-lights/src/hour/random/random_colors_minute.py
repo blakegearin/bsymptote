@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-# Name: Random Solid Second
+# Name: Random Colors Minute
 # Author: Blake Gearin (blakegearin@pm.me)
 #
-# Description: Random solid color changing every 5 seconds
+# Description: Random colors changing every 5 seconds
 
 from neopixel import *
 import datetime
@@ -39,9 +39,9 @@ def update(strip, table_values):
 
     if (now.minute == 0) and (now.second == 0) and (now.hour != last_active):
         last_active = now.hour
-        wheel_deg = random.randint(0, 255)
 
         for i in range(0,led_count):
+            wheel_deg = random.randint(0, 255)
             if transition < 1.0:
                 strip.setPixelColor(i, colorBlend(strip.getPixelColor(i), wheel(wheel_deg), easeOut(transition)))
             else:

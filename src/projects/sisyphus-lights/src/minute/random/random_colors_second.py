@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Name: Random Colors
+# Name: Random Colors Second
 # Author: Blake Gearin (blakegearin@pm.me)
 #
 # Description: Random colors changing every 5 seconds

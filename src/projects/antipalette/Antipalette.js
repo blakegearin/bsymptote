@@ -215,7 +215,7 @@ class Antipalette extends React.Component {
     toggleSpinner(true);
 
     const newUrl =
-      `/antipalette?color=${encodeURIComponent(this.state.hexColor)}&type=${this.state.type}`;
+      `/#/antipalette?color=${encodeURIComponent(this.state.hexColor)}&type=${this.state.type}`;
 
     window.location.replace(newUrl);
   }

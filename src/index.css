@@ -74,11 +74,13 @@ button
   background-color: #1fc0bd;;
 }
 
-.activate-button
-{
+.right {
   float: right;
   margin-right: 5%;
+}
 
+.activate-button
+{
   background-color: #71cc44;
   text-shadow: 1px 0px 0px #35611f;
 

@@ -247,7 +247,7 @@ class Dice extends React.Component {
         <Button
           id='roll-button'
           title='Roll'
-          className='no-select activate-button'
+          className='no-select activate-button right'
           disabled={this.state.loading}
           onClick={() => {
             this.setState({ loading: true });

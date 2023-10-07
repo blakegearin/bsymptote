@@ -22,7 +22,6 @@ main
 
 #page-title
 {
-  /* display: flex; */
   display: inline-grid;
   grid-template-columns: auto auto;
   position: absolute;
@@ -231,4 +230,40 @@ main
   {
     display: flow-root;
   }
+}
+
+#dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  border: 1px solid black;
+}
+
+.cancel-button
+{
+  background-color: #D82727;
+  text-shadow: 1px 0px 0px #7f1a1a;
+
+  border: 3px solid #a61c1c;
+  box-shadow: 0px 5px 0px 0px #a61c1c;
+}
+
+.cancel-button:active
+{
+  cursor: pointer;
+  box-shadow: none;
+  transform: translateY(4px);
+
+  border-color: #707070;
+  background-color: #8c1b1b;
+}
+
+.cancel-button:hover:not(:active)
+{
+  background-color: #e63a3a;
 }

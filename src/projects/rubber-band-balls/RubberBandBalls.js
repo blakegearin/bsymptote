@@ -249,7 +249,6 @@ export default function RubberBandBalls() {
       setSearchParams({ seed: seed });
     }
 
-    // console.log('seed: ' + seed);
     var rand = SeedRand(seed);
 
     var ballSize, ballMargin, ballSquare;
@@ -349,7 +348,7 @@ export default function RubberBandBalls() {
       <Button
         id='random-button'
         title={spanEachCharacterWithTilt('Random')}
-        className='no-select activate-button'
+        className='no-select activate-button right'
         onClick={() => {
           toggleSpinner(true);
           navigate(`/rubber-band-balls`);

@@ -29,6 +29,10 @@ function toggleSpinner(loading) {
   document.getElementById('spinnerBackground').style.display = loading ? '' : 'none';
 }
 
+function toggleDialog(display) {
+  document.getElementById('dialog').style.display = display ? '' : 'none';
+}
+
 // Credit: https://stackoverflow.com/a/41491220/5988852
 function pickTextColorBasedOnBgColorSimple(bgColor) {
   var color = (bgColor.charAt(0) === '#') ? bgColor.substring(1, 7) : bgColor;
@@ -77,24 +81,29 @@ class Antipalette extends React.Component {
       b = rgb.g;
     }
 
+    const colorPresentOnLoad = (hexColor != null);
+
+    const color = {
+      r: r,
+      g: g,
+      b: b,
+      a: '1',
+    };
+
     this.state = {
       loading: false,
       windowWidth: window.innerWidth,
       windowHeight: (window.innerHeight - 120),
       displayColorPicker: false,
+      displayResetButton: colorPresentOnLoad,
       type: type,
       hexColor: hexColor,
-      color: {
-        r: r,
-        g: g,
-        b: b,
-        a: '1',
-      },
-      colorPresentOnLoad: (hexColor != null),
+      color: color,
+      colorPresentOnLoad: colorPresentOnLoad,
     };
   }
 
-  generativeArt = () => {
+  generativeArt = async () => {
     let antipalette = document.getElementById('antipalette-content');
     if (antipalette == null) {
       console.error('antipalette-content wasn\'t found');
@@ -113,6 +122,11 @@ class Antipalette extends React.Component {
 
     for (let i = 0; i < totalHexColors(); ++i) {
       if (limit != null && limit === 0) break;
+
+      if (i % Math.round(totalHexColors() / 100) === 0) {
+        document.getElementById('loadingPercentage').innerText = `${Math.round((i / totalHexColors()) * 100)}%`;
+        await new Promise((resolve) => setTimeout(resolve, 0));
+      }
 
       const color = '#' + i.toString(16).padStart(6, '0');
 
@@ -135,24 +149,19 @@ class Antipalette extends React.Component {
     }
 
     if (colorsFound.length === 0) {
+      this.setState({ colorPresentOnLoad: false });
       document.documentElement.style.setProperty('--palette-amount', 1);
-
-      let element = document.createElement('div');
-      element.classList = 'palette-color';
-      element.style = 'background-color: #ffffff;';
-
-      let span = document.createElement('span');
-      span.innerText = 'No colors found. This may sound bad but it is good.';
-      element.appendChild(span);
-
-      document.getElementById('antipalette-content').appendChild(element);
+      toggleDialog(true);
     }
 
     document.querySelectorAll('.palette-color').forEach((element) => {
       element.style.cssText += `height: calc(${this.state.windowHeight}px / var(--palette-amount));`;
     });
 
-    this.setState({ antipalette: colorsFound });
+    this.setState({
+      antipalette: colorsFound,
+      displayResetButton: true,
+    });
   }
 
   randomColor = () => {
@@ -210,21 +219,52 @@ class Antipalette extends React.Component {
     this.setState({ type: selectedOption.value });
   };
 
-  onSubmit = (event) => {
+  onSubmit = async (event) => {
     event.preventDefault();
-    toggleSpinner(true);
+
+    toggleSpinner(true, true);
+    await new Promise((resolve) => setTimeout(resolve, 0));
 
     const newUrl =
       `/#/antipalette?color=${encodeURIComponent(this.state.hexColor)}&type=${this.state.type}`;
 
-    window.location.replace(newUrl);
+    window.location.href = newUrl;
+
+    this.generativeArt().then(() => {
+      toggleSpinner(false);
+    });
+  }
+
+  onDismiss = () => {
+    toggleDialog(false);
+  }
+
+  onReset = (event) => {
+    event.preventDefault();
+
+    this.setState({
+      displayResetButton: false,
+      type: null,
+      hexColor: null,
+      color: {
+        r: 255,
+        g: 255,
+        b: 255,
+        a: '1',
+      },
+    });
+
+    window.location.href = '/#/antipalette';
   }
 
   componentDidMount() {
     window.addEventListener('resize', this.handleResize);
-    this.generativeArt();
 
-    toggleSpinner(false);
+    toggleSpinner(true, true);
+
+    this.generativeArt().then(() => {
+      toggleSpinner(false);
+    });
   }
 
   componentWillUnmount() {
@@ -232,8 +272,16 @@ class Antipalette extends React.Component {
   }
 
   render() {
-    const { type, colorPresentOnLoad } = this.state;
-    const isAntipalettePopulated = this.state.antipalette && this.state.antipalette.length !== 0;
+    const {
+      antipalette,
+      type,
+      color,
+      colorPresentOnLoad,
+      loading,
+      displayResetButton,
+      displayColorPicker,
+    } = this.state;
+    const isAntipalettePopulated = antipalette && antipalette.length !== 0;
 
     const descriptiveText = {
       value: (colorPresentOnLoad && isAntipalettePopulated) ? 'copy me' : 'generate me',
@@ -243,24 +291,42 @@ class Antipalette extends React.Component {
     const colorStyles = reactCSS({
       'default': {
         color: {
-          background: `rgba(${ this.state.color.r }, ${ this.state.color.g }, ${ this.state.color.b }, ${ this.state.color.a })`,
+          background: `rgba(${ color.r }, ${ color.g }, ${ color.b }, ${ color.a })`,
         },
       },
     });
 
-    const selectOptions = typesOfColorBlindness.map(t => { return { value: t, label: t} });
+    const selectOptions = typesOfColorBlindness.map(t => { return { label: t, value: t } });
+    const dialogStyle = {
+      display: 'none',
+    };
+    const selectStyles = {
+      control: (css) => ({
+        ...css,
+        width: "29vw"
+      }),
+      menu: ({ width, ...css }) => ({
+        ...css,
+        width: "max-content",
+        minWidth: "20%"
+      }),
+      option: (css) => ({
+        ...css,
+        width: "29vw"
+      }),
+    };
 
     return (
       <div id='antipalette' className='center'>
         {
-          this.state.displayColorPicker ?
+          displayColorPicker ?
           <div id='popover'>
             <div
               id='cover'
               onClick={this.handleClose}
             />
             <SketchPicker
-              color={this.state.color}
+              color={color}
               onChange={this.handleColorChange}
             />
           </div>
@@ -278,11 +344,24 @@ class Antipalette extends React.Component {
           }}
         >
           <h1>Antipalette</h1>
+          <div id="dialog" style={dialogStyle}>
+            <p id="dialogText">
+              No matching colors found. This is a safe color to use for this color deficiency.
+              This may not be true for other color deficiencies.
+            </p>
+            <button
+              id="dismissButton"
+              className="cancel-button"
+              onClick={this.onDismiss}
+            >
+              Dismiss
+            </button>
+          </div>
           {
             colorPresentOnLoad ?
             <CopyToClipboard
               id='copy-to-clipboard'
-              text={this.state.antipalette}
+              text={antipalette}
               onCopy={this.copiedToClipboard}
             >
               <div>
@@ -342,11 +421,12 @@ class Antipalette extends React.Component {
             <div id='inputs'>
               <Select
                 id='select-color-deficiency'
-                placeholder='color deficiency'
                 options={selectOptions}
-                value={selectOptions.filter(o => o.value === type)[0]}
+                placeholder='select color deficiency'
+                value={type ? selectOptions.filter(o => o.value === type)[0] : null}
                 menuPlacement='top'
                 onChange={this.handleTypeChange}
+                styles={selectStyles}
               />
               <div id='color-input'>
                 <label htmlFor='swatch'>Color&nbsp;&nbsp;</label>
@@ -358,14 +438,24 @@ class Antipalette extends React.Component {
                 </div>
               </div>
             </div>
-            <Button
-              id='roll-button'
-              type='submit'
-              title='Generate'
-              className='no-select activate-button'
-              disabled={this.state.loading}
-              onClick={this.onSubmit}
-            />
+            {
+              displayResetButton ?
+              <Button
+                id='reset-button'
+                title='Reset'
+                className='no-select cancel-button right'
+                disabled={loading}
+                onClick={this.onReset}
+              />
+              : <Button
+                id='roll-button'
+                type='submit'
+                title='Generate'
+                className='no-select activate-button right'
+                disabled={loading}
+                onClick={this.onSubmit}
+              />
+            }
           </form>
         </div>
       </div>

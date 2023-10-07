@@ -50,6 +50,22 @@
         transform: translate(-50%, -50%);
       }
 
+      #loadingPercentage {
+        color: white;
+      }
+
+      #loading {
+        font-size: 5em;
+        font-weight: bold;
+        color: var(--pacman);
+
+        margin: 0;
+        position: absolute;
+        top: 65%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
       :root {
         --pacman: #FEFF00;
         --pacman-dots: white;
@@ -129,26 +145,26 @@
           transform: translate(-100px, -6.25px);
         }
       }
-      .pacman {
+      #pacman {
         position: relative;
       }
-      .pacman > div:nth-child(2) {
+      #pacman > div:nth-child(2) {
         -webkit-animation: pacman-balls 1s -0.99s infinite linear;
         animation: pacman-balls 1s -0.99s infinite linear;
       }
-      .pacman > div:nth-child(3) {
+      #pacman > div:nth-child(3) {
         -webkit-animation: pacman-balls 1s -0.66s infinite linear;
         animation: pacman-balls 1s -0.66s infinite linear;
       }
-      .pacman > div:nth-child(4) {
+      #pacman > div:nth-child(4) {
         -webkit-animation: pacman-balls 1s -0.33s infinite linear;
         animation: pacman-balls 1s -0.33s infinite linear;
       }
-      .pacman > div:nth-child(5) {
+      #pacman > div:nth-child(5) {
         -webkit-animation: pacman-balls 1s 0s infinite linear;
         animation: pacman-balls 1s 0s infinite linear;
       }
-      .pacman > div:first-of-type {
+      #pacman > div:first-of-type {
         width: 0px;
         height: 0px;
         border-right: 25px solid transparent;
@@ -161,7 +177,7 @@
         position: relative;
         left: -30px;
       }
-      .pacman > div:nth-child(2) {
+      #pacman > div:nth-child(2) {
         width: 0px;
         height: 0px;
         border-right: 25px solid transparent;
@@ -176,10 +192,10 @@
         left: -30px;
 
       }
-      .pacman > div:nth-child(3),
-      .pacman > div:nth-child(4),
-      .pacman > div:nth-child(5),
-      .pacman > div:nth-child(6) {
+      #pacman > div:nth-child(3),
+      #pacman > div:nth-child(4),
+      #pacman > div:nth-child(5),
+      #pacman > div:nth-child(6) {
         background-color: var(--pacman-dots);
         width: 15px;
         height: 15px;
@@ -203,16 +219,21 @@
       <div class="spinner">
         <div class="loader-wrapper d-flex justify-content-center align-items-center">
           <div class="loader">
-            <div class="pacman">
+            <div id="pacman">
+
               <div></div>
               <div></div>
               <div></div>
               <div></div>
               <div></div>
+
             </div>
           </div>
         </div>
       </div>
+      <span id="loading">
+        <span id="loadingPercentage"></span>
+      </span>
     </div>
   </body>
 </html>

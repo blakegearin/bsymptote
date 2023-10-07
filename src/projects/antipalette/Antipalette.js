@@ -223,6 +223,7 @@ class Antipalette extends React.Component {
     event.preventDefault();
 
     toggleSpinner(true, true);
+    this.setState({ loading: true });
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const newUrl =
@@ -275,6 +276,7 @@ class Antipalette extends React.Component {
     const {
       antipalette,
       type,
+      hexColor,
       color,
       colorPresentOnLoad,
       loading,
@@ -303,16 +305,17 @@ class Antipalette extends React.Component {
     const selectStyles = {
       control: (css) => ({
         ...css,
-        width: "29vw"
+        width: "29vw",
+        cursor: "text",
       }),
       menu: ({ width, ...css }) => ({
         ...css,
         width: "max-content",
-        minWidth: "20%"
+        minWidth: "20%",
       }),
       option: (css) => ({
         ...css,
-        width: "29vw"
+        width: "29vw",
       }),
     };
 
@@ -451,8 +454,8 @@ class Antipalette extends React.Component {
                 id='roll-button'
                 type='submit'
                 title='Generate'
-                className='no-select activate-button right'
-                disabled={loading}
+                className={loading ? 'no-select activate-button right loading' : 'no-select activate-button right'}
+                disabled={loading || ((hexColor == null) || (type == null))}
                 onClick={this.onSubmit}
               />
             }

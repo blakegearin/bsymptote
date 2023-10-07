@@ -90,7 +90,6 @@ button
 
 .activate-button:active
 {
-  cursor: wait;
   box-shadow: none;
   transform: translateY(4px);
 
@@ -100,26 +99,26 @@ button
 
 .activate-button:disabled
 {
-  cursor: wait;
   box-shadow: none;
   transform: translateY(4px);
 
+  color: #e8e8e8;
   border-color: #707070;
   background-color: #adadad;
 }
 
 .activate-button:disabled:hover
 {
+  cursor: not-allowed;
+  background-color: #adadad !important;
+}
+
+.activate-button.loading:hover
+{
   cursor: wait;
-  background-color: #adadad;
 }
 
 .activate-button:hover:not(:active)
 {
   background-color: #7dce54;
-}
-
-.activate-button:hover:active
-{
-  cursor: wait;
 }

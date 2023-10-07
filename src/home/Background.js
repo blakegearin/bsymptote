@@ -1,6 +1,7 @@
 // Credit: https://codepen.io/trajektorijus/pen/mdeBYrX
 
-import SimplexNoise from 'simplex-noise';
+import alea from 'alea';
+import { createNoise3D } from 'simplex-noise';
 import chroma from 'chroma-js';
 
 import './Background.css';
@@ -30,7 +31,7 @@ export default function Background() {
     }
   }
 
-  Utils.simplex = new SimplexNoise('seed');
+  Utils.noise3D = createNoise3D(alea('seed'));
 
   var config = {
     bgColor: chroma({ h: 230, s: 0.5, l: 0.92}).hex(),
@@ -122,7 +123,7 @@ export default function Background() {
     ctx.lineTo(wHypot / 2, wHypot / 2 - (wHypot * layer.progress))
 
     for (let sid = 1; sid <= segmentCount; sid++) {
-      const n = Utils.simplex.noise3D(sid * noiseZoom, sid * noiseZoom, layer.id + timestamp)
+      const n = Utils.noise3D(sid * noiseZoom, sid * noiseZoom, layer.id + timestamp)
       const heightOffset = n * waveAmplitude
 
       ctx.lineTo((wHypot / 2) - (sid * segmentSize), wHypot / 2 - (wHypot * layer.progress) + heightOffset)
